@@ -16,5 +16,4 @@ int main() {
     graphM->display();
     return 0;
 
-    //test
 }
