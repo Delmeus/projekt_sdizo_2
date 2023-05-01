@@ -1,0 +1,3 @@
+G:/projekt_SDiZO_2/cmake-build-debug/CMakeFiles/projekt_SDiZO_2.dir
+G:/projekt_SDiZO_2/cmake-build-debug/CMakeFiles/edit_cache.dir
+G:/projekt_SDiZO_2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
