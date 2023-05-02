@@ -10,7 +10,7 @@
 GraphAsList::GraphAsList(int v) : vertices(v) {}
 
 void GraphAsList::readGraphFromFile() {
-    std::ifstream file("G:/projekt_SDiZO_2/files/graph.txt");
+    std::ifstream file(R"(C:\Users\antek\Desktop\studia\4.sem\projekt_sdizo_2\files\graph.txt)");
     if(file.is_open()) {
         std::string line;
         std::getline(file, line);
@@ -37,5 +37,9 @@ void GraphAsList::display() {
     for (auto edge : edges) {
         std::cout << edge.second.first << " - " << edge.second.second << " : " << edge.first << std::endl;
     }
+}
+
+int GraphAsList::getVertices() {
+    return vertices;
 }
 

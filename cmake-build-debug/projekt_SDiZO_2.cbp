@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="projekt_SDiZO_2"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="projekt_SDiZO_2">
+				<Option output="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/projekt_SDiZO_2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 projekt_SDiZO_2"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="projekt_SDiZO_2/fast">
+				<Option output="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/projekt_SDiZO_2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 projekt_SDiZO_2/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/BellmanFord.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/BellmanFord.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Dijkstra.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Dijkstra.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Kruskal.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Kruskal.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Prim.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Prim.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsList.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsList.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/main.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/testers/AutomaticTester.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/testers/AutomaticTester.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/testers/ManualTester.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/testers/ManualTester.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/utilities/DisjointSets.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/utilities/DisjointSets.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/utilities/FileCreator.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/utilities/FileCreator.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/utilities/Timer.cpp">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/utilities/Timer.h">
+			<Option target="projekt_SDiZO_2"/>
+		</Unit>
+		<Unit filename="C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

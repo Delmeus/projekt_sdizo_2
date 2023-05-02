@@ -9,15 +9,16 @@
 
 
 class GraphAsList {
-private:
+public:
     int vertices; // liczba wierzchołków
     std::vector<std::pair<int, std::pair<int, int>>> edges; // krawędzie grafu: waga, {wierzchołek, wierzchołek}
-public:
+
     void readGraphFromFile();
     void addEdge(int u, int v, int w);
     void display();
+    int getVertices();
 
-    explicit GraphAsList(int v);
+    GraphAsList(int v);
 };
 
 

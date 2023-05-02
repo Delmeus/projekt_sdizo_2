@@ -11,8 +11,9 @@
 
 class Kruskal {
 public:
-    void forList(GraphAsList g);
+    static int forList(GraphAsList g);
     void forMatrix(GraphAsMatrix g);
+
 };
 
 

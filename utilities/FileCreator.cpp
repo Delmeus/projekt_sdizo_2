@@ -8,9 +8,10 @@
 
 void FileCreator::randomizeFile(int size, double density) {
 
-    std::ofstream file("G:/projekt_SDiZO_2/files/graph.txt");
+    std::ofstream file(R"(C:\Users\antek\Desktop\studia\4.sem\projekt_sdizo_2\files\graph.txt)");
     int vertex1, vertex2;
-    int edges = floor(size * density);
+    if(density > 1) density = 1;
+    int edges = floor(floor(size * (size -1))/2 * density); //maksymalna ilosc krawedzi pomnzona przez gestosc
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> e(1, 9);

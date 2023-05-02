@@ -14,7 +14,7 @@ GraphAsMatrix::GraphAsMatrix(int vertices){
 }
 
 void GraphAsMatrix::readGraphFromFile() {
-    std::ifstream file("G:/projekt_SDiZO_2/files/graph.txt");
+    std::ifstream file(R"(C:\Users\antek\Desktop\studia\4.sem\projekt_sdizo_2\files\graph.txt)");
     if(file.is_open()) {
         std::string line;
         std::getline(file, line);
@@ -36,7 +36,9 @@ void GraphAsMatrix::readGraphFromFile() {
             std::getline(file, line);
             std::stringstream info(line);
             info >> u >> v >> w;
-            edges[u][v] = w;
+            //jezeli jest wiecej niz jedna krawedz miedzy dwoma wierzcholkami
+            //to koszt traktujemy jako sume wag tych krawedzi
+            edges[u][v] += w;
         }
         file.close();
     }
