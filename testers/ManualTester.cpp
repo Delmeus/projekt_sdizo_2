@@ -37,13 +37,13 @@ void ManualTester::menu() {
              << "\n| 1.  Generate random file                             |"
              << "\n| 2.  Load graph from file                             |"
              << "\n| 3.  Display graph                                    |"
-             << "\n| 4.  Test Kruskal's algorithm for list                |"
-             << "\n| 5.  Test Prim's algorithm for list                   |"
-             << "\n| 6.  Test Dijkstra's algorithm for list               |"
-             << "\n| 7.  Test Bellman-Ford algorithm for list             |"
-             << "\n| 8.  Test Kruskal's algorithm for matrix              |"
-             << "\n| 9.  Test Prim's algorithm for matrix                 |"
-             << "\n| 10. Test Dijkstra's algorithm for matrix             |"
+             << "\n| 4.  Test Kruskal's    algorithm for   list           |"
+             << "\n| 5.  Test Prim's       algorithm for   list           |"
+             << "\n| 6.  Test Dijkstra's   algorithm for   list           |"
+             << "\n| 7.  Test Bellman-Ford algorithm for   list           |"
+             << "\n| 8.  Test Kruskal's    algorithm for matrix           |"
+             << "\n| 9.  Test Prim's       algorithm for matrix           |"
+             << "\n| 10. Test Dijkstra's   algorithm for matrix           |"
              << "\n| 11. Test Bellman-Ford algorithm for matrix           |"
              << "\n| 12. Change size and density                          |"
              << "\n| 13. Exit program                                     |"
@@ -56,6 +56,10 @@ void ManualTester::menu() {
                 break;
             }
             case 2:{
+                delete graph;
+                graph = new GraphAsList(size);
+                delete graphM;
+                graphM = new GraphAsMatrix(size);
                 graph->readGraphFromFile();
                 graphM->readGraphFromFile();
                 break;
@@ -66,10 +70,12 @@ void ManualTester::menu() {
                 break;
             }
             case 4:{
+                int cost;
                 timer.start();
-                Kruskal::forList(*graph);
+                cost = Kruskal::forList(*graph);
                 timer.stop();
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                cout << "Cost: " << cost << endl;
                 break;
             }
             case 5:{
@@ -94,10 +100,12 @@ void ManualTester::menu() {
                 break;
             }
             case 8:{
+                int cost;
                 timer.start();
-                testKruskalMatrix();
+                cost = Kruskal::forMatrix(*graphM);
                 timer.stop();
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| " << timer.micro() << " mis|" << endl;
+                cout << "Cost: " << cost << endl;
                 break;
             }
             case 9:{
@@ -130,6 +138,7 @@ void ManualTester::menu() {
                     if(size < 1) cout << "\nSize has to be greater than 0 and density has to be between 0 to 1" << endl;
                 }while(size < 1 || !(density > 0 && density <= 1));
                 system("CLS");
+                break;
             }
             case 13:{
                 cout << "\nClosing program" << endl;

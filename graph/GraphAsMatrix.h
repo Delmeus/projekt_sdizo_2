@@ -8,9 +8,9 @@
 
 class GraphAsMatrix {
 private:
-    int vertices; // liczba wierzchołków
-    int **edges; // krawędzie grafu
 public:
+    int **edges; // krawędzie grafu
+    int vertices; // liczba wierzchołków
     GraphAsMatrix(int vertices);
     void readGraphFromFile();
     void addEdge(int u, int v, int w);

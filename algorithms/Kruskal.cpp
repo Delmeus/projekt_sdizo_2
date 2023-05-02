@@ -23,7 +23,7 @@ int Kruskal::forList(GraphAsList g) {
         int setV = ds->find(v);
 
         if(setU != setV){
-            std::cout << u << " - " << v << std::endl;
+            std::cout << u << " - " << v << " | cost: " << it->first << std::endl;
 
             mst += it->first;
 
@@ -34,6 +34,32 @@ int Kruskal::forList(GraphAsList g) {
     return mst;
 }
 
-void Kruskal::forMatrix(GraphAsMatrix g) {
+int Kruskal::forMatrix(GraphAsMatrix g) {
+    int mst = 0; // Cost of min MST.
+
+    // Initialize sets of disjoint sets.
+    auto ds = new DisjointSets(g.vertices);
+
+    // Include minimum weight edges one by one
+    int edge_count = 0;
+    while (edge_count < g.vertices - 1) {
+        int min = INT_MAX, u = - 1, v = -1;
+        for (int i = 0; i < g.vertices; i++) {
+            for (int j = 0; j < g.vertices; j++) {
+                if (ds->find(i) != ds->find(j) && g.edges[i][j] < min && g.edges[i][j] > 0) {
+                    min = g.edges[i][j];
+                    u = i;
+                    v = j;
+                }
+            }
+        }
+
+        ds->merge(u, v);
+        printf("Edge %d:(%d, %d) cost:%d \n",
+               edge_count++, u, v, min);
+        mst += min;
+    }
+
+    return mst;
 
 }

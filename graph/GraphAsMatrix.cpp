@@ -10,7 +10,7 @@
 
 GraphAsMatrix::GraphAsMatrix(int vertices){
     this->vertices = vertices;
-
+    edges = nullptr;
 }
 
 void GraphAsMatrix::readGraphFromFile() {
@@ -22,6 +22,11 @@ void GraphAsMatrix::readGraphFromFile() {
         int u, v, w;
         std::stringstream ss(line);
         ss >> vertices >> edgesNumber;
+
+        if (edges != nullptr) {
+            delete edges;
+            edges = nullptr;
+        }
 
         edges = new int * [vertices];
         for(int i=0; i<vertices; ++i) edges[i] = new int[vertices];
@@ -36,9 +41,7 @@ void GraphAsMatrix::readGraphFromFile() {
             std::getline(file, line);
             std::stringstream info(line);
             info >> u >> v >> w;
-            //jezeli jest wiecej niz jedna krawedz miedzy dwoma wierzcholkami
-            //to koszt traktujemy jako sume wag tych krawedzi
-            edges[u][v] += w;
+            if(edges[u][v] > w || edges[u][v] == 0) edges[u][v] = w;
         }
         file.close();
     }
