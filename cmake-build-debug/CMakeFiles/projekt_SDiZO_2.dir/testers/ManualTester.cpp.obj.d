@@ -176,4 +176,5 @@ CMakeFiles/projekt_SDiZO_2.dir/testers/ManualTester.cpp.obj: \
  C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h \
  C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Kruskal.h \
  C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsList.h \
- C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h
+ C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h \
+ C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Prim.h

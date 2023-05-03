@@ -29,7 +29,7 @@ void GraphAsMatrix::readGraphFromFile() {
         }
 
         edges = new int * [vertices];
-        for(int i=0; i<vertices; ++i) edges[i] = new int[vertices];
+        for(int i = 0; i < vertices; ++i) edges[i] = new int[vertices];
 
         for(int i = 0; i < vertices; i++) {
             for (int j = 0; j < vertices; j++) {
@@ -41,7 +41,14 @@ void GraphAsMatrix::readGraphFromFile() {
             std::getline(file, line);
             std::stringstream info(line);
             info >> u >> v >> w;
-            if(edges[u][v] > w || edges[u][v] == 0) edges[u][v] = w;
+            if(edges[u][v] > w || edges[u][v] == 0) {
+                edges[u][v] = w;
+                edges[v][u] = w;
+            }
+            if(edges[v][u] > w || edges[v][u] == 0){
+                edges[u][v] = w;
+                edges[v][u] = w;
+            }
         }
         file.close();
     }

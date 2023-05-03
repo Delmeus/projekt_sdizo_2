@@ -10,9 +10,11 @@
 #include "../graph/GraphAsMatrix.h"
 
 class Prim {
+private:
+    int minKey(int key[], bool mstSet[], GraphAsMatrix g);
 public:
     void forList(GraphAsList g);
-    void forMatrix(GraphAsMatrix g);
+    int forMatrix(GraphAsMatrix g);
 };
 
 

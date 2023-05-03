@@ -8,6 +8,7 @@
 #include "../graph/GraphAsList.h"
 #include "../graph/GraphAsMatrix.h"
 #include "../algorithms/Kruskal.h"
+#include "../algorithms/Prim.h"
 
 using namespace std;
 
@@ -109,10 +110,13 @@ void ManualTester::menu() {
                 break;
             }
             case 9:{
+                int cost;
+                auto prim = new Prim();
                 timer.start();
-                testPrimMatrix();
+                cost = prim->forMatrix(*graphM);
                 timer.stop();
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| " << timer.micro() << " mis|" << endl;
+                cout << "Cost: " << cost << endl;
                 break;
             }
             case 10:{
