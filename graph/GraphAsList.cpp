@@ -9,8 +9,10 @@
 
 GraphAsList::GraphAsList(int v) : vertices(v) {}
 
-void GraphAsList::readGraphFromFile() {
-    std::ifstream file(R"(C:\Users\antek\Desktop\studia\4.sem\projekt_sdizo_2\files\graph.txt)");
+void GraphAsList::readGraphFromFile(std::string s) {
+    std::string name = R"(C:\Users\antek\Desktop\studia\4.sem\projekt_sdizo_2\files\)" + s;
+    std::cout << "\n " << name;
+    std::ifstream file(name);
     if(file.is_open()) {
         std::string line;
         std::getline(file, line);
@@ -26,6 +28,7 @@ void GraphAsList::readGraphFromFile() {
         }
         file.close();
     }
+    else std::cout << "\nTHERE WAS A PROBLEM WITH OPENING THE FILE";
 }
 
 void GraphAsList::addEdge(int u, int v, int w) {

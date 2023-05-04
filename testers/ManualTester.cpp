@@ -19,6 +19,7 @@ ManualTester::ManualTester() {
 void ManualTester::menu() {
     int answer, size;
     double density;
+
     do {
         cout << "\nSize: ";
         cin >> size;
@@ -27,11 +28,15 @@ void ManualTester::menu() {
         if(size < 1) cout << "\nSize has to be greater than 0 and density has to be between 0 to 1";
     }while(size < 1 || density < 0 || density > 1);
     system("CLS");
+
     FileCreator::randomizeFile(size, density);
+    //inicjalizacja grafu reprezentowanego jako liste
     auto graph = new GraphAsList(size);
+    //inicjalizacja grafu reprezentowanego jako macierz
     auto graphM = new GraphAsMatrix(size);
-    graph->readGraphFromFile();
+    graph->readGraphFromFile("graph.txt");
     graphM->readGraphFromFile("graph.txt");
+
     do {
         cout << endl;
         cout << "\n+------------------------------------------------------+"
@@ -51,10 +56,13 @@ void ManualTester::menu() {
              << "\n+------------------------------------------------------+"
              << "\nAnswer: ";
         cin >> answer;
+
         switch (answer) {
             case 1: {
                 cout << "size " << size << " den " << density;
                 FileCreator::randomizeFile(size, density);
+                cout << "\nGenerated random graph in file 'graph.txt'";
+                waitForResponse();
                 break;
             }
             case 2:{
@@ -64,7 +72,7 @@ void ManualTester::menu() {
                 graphM = new GraphAsMatrix(size);
                 std::string name;
                 cin >> name;
-                graph->readGraphFromFile();
+                graph->readGraphFromFile(name);
                 graphM->readGraphFromFile(name);
                 break;
             }
@@ -78,29 +86,33 @@ void ManualTester::menu() {
                 timer.start();
                 cost = Kruskal::forList(*graph);
                 timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 cout << "Cost: " << cost << endl;
+                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                waitForResponse();
                 break;
             }
             case 5:{
                 timer.start();
                 testPrimList(*graph);
                 timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| " << timer.micro() << " mis|" << endl;
+                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                waitForResponse();
                 break;
             }
             case 6:{
                 timer.start();
                 testDijkstraList(*graph);
                 timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| " << timer.micro() << " mis|" << endl;
+                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                waitForResponse();
                 break;
             }
             case 7:{
                 timer.start();
                 testBellmanFordList(*graph);
                 timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| " << timer.micro() << " mis|" << endl;
+                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                waitForResponse();
                 break;
             }
             case 8:{
@@ -108,8 +120,9 @@ void ManualTester::menu() {
                 timer.start();
                 cost = Kruskal::forMatrix(*graphM);
                 timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| " << timer.micro() << " mis|" << endl;
                 cout << "Cost: " << cost << endl;
+                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                waitForResponse();
                 break;
             }
             case 9:{
@@ -117,22 +130,25 @@ void ManualTester::menu() {
                 timer.start();
                 cost = Prim::forMatrix(*graphM);
                 timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 cout << "Cost: " << cost << endl;
+                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                waitForResponse();
                 break;
             }
             case 10:{
                 timer.start();
                 testDijkstraMatrix();
                 timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| " << timer.micro() << " mis|" << endl;
+                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                waitForResponse();
                 break;
             }
             case 11:{
                 timer.start();
                 testBellmanFordMatrix();
                 timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| " << timer.micro() << " mis|" << endl;
+                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                waitForResponse();
                 break;
             }
             case 12:{
@@ -185,4 +201,10 @@ void ManualTester::testBellmanFordList(GraphAsList g) {
 
 void ManualTester::testBellmanFordMatrix() {
 
+}
+
+void ManualTester::waitForResponse() {
+    std::cout << "\n\npress ENTER to continue..." << std::endl;
+    std::cin.ignore(10000, '\n');
+    getchar();
 }

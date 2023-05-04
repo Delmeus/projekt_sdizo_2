@@ -23,7 +23,7 @@ int Kruskal::forList(GraphAsList g) {
         int setV = ds->find(v);
 
         if(setU != setV){
-            std::cout << u << " - " << v << " | cost: " << it->first << std::endl;
+            std::cout << u << " - " << v << "\t | cost: " << it->first << std::endl;
 
             mst += it->first;
 
@@ -55,8 +55,9 @@ int Kruskal::forMatrix(GraphAsMatrix g) {
         }
 
         ds->merge(u, v);
-        printf("Edge %d:(%d, %d) cost:%d \n",
-               edge_count++, u, v, min);
+//        printf("Edge %d:(%d, %d) cost:%d \n",
+//               edge_count++, u, v, min);
+        std::cout << "Edge " << edge_count++ << ": (" << u << ", " << v << ")\t| cost" << min << std::endl;
         mst += min;
     }
 

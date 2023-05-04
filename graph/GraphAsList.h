@@ -6,6 +6,7 @@
 #define PROJEKT_SDIZO_2_GRAPHASLIST_H
 #include "algorithm"
 #include "vector"
+#include <string>
 
 
 class GraphAsList {
@@ -13,7 +14,7 @@ public:
     int vertices; // liczba wierzchołków
     std::vector<std::pair<int, std::pair<int, int>>> edges; // krawędzie grafu: waga, {wierzchołek, wierzchołek}
 
-    void readGraphFromFile();
+    void readGraphFromFile(std::string s);
     void addEdge(int u, int v, int w);
     void display();
     int getVertices();

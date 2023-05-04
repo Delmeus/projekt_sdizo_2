@@ -89,7 +89,6 @@ CMakeFiles/projekt_SDiZO_2.dir/algorithms/BellmanFord.cpp.obj: C:/Users/antek/De
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/execution_defs.h \
-  C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stringfwd.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/char_traits.h \
@@ -141,7 +140,8 @@ CMakeFiles/projekt_SDiZO_2.dir/algorithms/BellmanFord.cpp.obj: C:/Users/antek/De
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cstdio \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cerrno \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/charconv.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc
+  C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc \
+  C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h
 
 CMakeFiles/projekt_SDiZO_2.dir/algorithms/Dijkstra.cpp.obj: C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Dijkstra.cpp \
   C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Dijkstra.h \
@@ -231,7 +231,6 @@ CMakeFiles/projekt_SDiZO_2.dir/algorithms/Dijkstra.cpp.obj: C:/Users/antek/Deskt
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/vector.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/execution_defs.h \
-  C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stringfwd.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/char_traits.h \
@@ -283,7 +282,8 @@ CMakeFiles/projekt_SDiZO_2.dir/algorithms/Dijkstra.cpp.obj: C:/Users/antek/Deskt
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cstdio \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cerrno \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/charconv.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc
+  C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc \
+  C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h
 
 CMakeFiles/projekt_SDiZO_2.dir/algorithms/Kruskal.cpp.obj: C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/algorithms/Kruskal.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream \
@@ -548,7 +548,6 @@ CMakeFiles/projekt_SDiZO_2.dir/algorithms/Prim.cpp.obj: C:/Users/antek/Desktop/s
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/unordered_map.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/erase_if.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/execution_defs.h \
-  C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stringfwd.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/char_traits.h \
@@ -601,6 +600,7 @@ CMakeFiles/projekt_SDiZO_2.dir/algorithms/Prim.cpp.obj: C:/Users/antek/Desktop/s
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cerrno \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/charconv.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc \
+  C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ostream \
   C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ios \
@@ -1787,10 +1787,6 @@ C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/execution_defs.h:
 
-C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/locale:
-
-C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h:
-
 C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/postypes.h:
@@ -1894,6 +1890,10 @@ C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc:
+
+C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/locale:
+
+C:/Users/antek/Desktop/studia/4.sem/projekt_sdizo_2/graph/GraphAsMatrix.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc:
 

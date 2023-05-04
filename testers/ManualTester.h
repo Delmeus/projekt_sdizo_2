@@ -20,6 +20,7 @@ private:
     void testDijkstraMatrix();
     void testBellmanFordList(GraphAsList g);
     void testBellmanFordMatrix();
+    static void waitForResponse();
 public:
     ManualTester();
     void menu();
