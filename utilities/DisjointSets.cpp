@@ -4,14 +4,22 @@
 
 #include "DisjointSets.h"
 
-DisjointSets::DisjointSets(int n) {
+DisjointSets::DisjointSets(int n, bool prim) {
     this->n = n;
     parent = new int[n];
     rank = new int[n];
 
-    for(int i = 0; i < n; i++){
-        rank[i] = 0;
-        parent[i] = i;
+    if(prim){
+        for(int i = 0; i < n; i++){
+            rank[i] = 10;
+            parent[i] = i;
+        }
+    }
+    else {
+        for (int i = 0; i < n; i++) {
+            rank[i] = 0;
+            parent[i] = i;
+        }
     }
 }
 

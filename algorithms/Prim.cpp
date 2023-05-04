@@ -2,68 +2,49 @@
 // Created by Antek on 01.05.2023.
 //
 
+#include <queue>
 #include "Prim.h"
 #include "iostream"
+#include "../utilities/DisjointSets.h"
+#include "random"
 
 using namespace std;
 
 int Prim::forMatrix(GraphAsMatrix g) {
-    int cost = 0;
-
-// Array to store constructed MST
-    int parent[g.vertices];
-
-    // Key values used to pick minimum weight edge in cut
-    int key[g.vertices];
-
-    // To represent set of vertices included in MST
-    bool mstSet[g.vertices];
-
-    // Initialize all keys as INFINITE
-    for (int i = 0; i < g.vertices; i++)
-        key[i] = INT_MAX, mstSet[i] = false;
-
-    // Always include first 1st vertex in MST.
-    // Make key 0 so that this vertex is picked as first
-    // vertex.
-    key[0] = 0;
-
-    // First node is always root of MST
-    parent[0] = -1;
-
-    // The MST will have V vertices
-    for (int count = 0; count < g.vertices - 1; count++) {
-
-        // Pick the minimum key vertex from the
-        // set of vertices not yet included in MST
-        int u = minKey(key, mstSet, g);
-
-        // Add the picked vertex to the MST Set
-        mstSet[u] = true;
-
-        // Update key value and parent index of
-        // the adjacent vertices of the picked vertex.
-        // Consider only those vertices which are not
-        // yet included in MST
-        for (int v = 0; v < g.vertices; v++)
-
-            // graph[u][v] is non zero only for adjacent
-            // vertices of m mstSet[v] is false for vertices
-            // not yet included in MST Update the key only
-            // if graph[u][v] is smaller than key[v]
-            if (g.edges[u][v] && !mstSet[v]
-                && g.edges[u][v] < key[v])
-                parent[v] = u, key[v] = g.edges[u][v];
-    }
-
-
-    // Print the constructed MST
-    cout << "Edge \tWeight\n";
-    for (int i = 1; i < g.vertices; i++) {
-        cout << parent[i] << " - " << i << " \t" << g.edges[i][parent[i]] << " \n";
-        cost += g.edges[i][parent[i]];
+    vector<bool> inMST(g.vertices, false);
+    inMST[0] = true;
+    int count = 0, cost = 0;
+    while (count < g.vertices - 1) {
+        int min = INT_MAX, u = -1, v = -1;
+        for (int i = 0; i < g.vertices; i++) {
+            for (int j = 0; j < g.vertices; j++) {
+                if (g.edges[i][j] < min && g.edges[i][j] != 0) {
+                    if (createsMST(i, j, inMST)) {
+                        min = g.edges[i][j];
+                        u = i;
+                        v = j;
+                    }
+                }
+            }
+        }
+        if (u != -1 && v != -1) {
+            cout << "Edge " << count++ << " : (" << u << " , " << v << " ) : cost = " << min << endl;
+            cost += min;
+            inMST[v] = inMST[u] = true;
+        }
     }
     return cost;
+
+}
+
+bool Prim::createsMST(int u, int v, vector<bool> inMST){
+    if (u == v)
+        return false;
+    if (!inMST[u] && !inMST[v])
+        return false;
+    else if (inMST[u] && inMST[v])
+        return false;
+    return true;
 }
 
 int Prim::minKey(int key[], bool mstSet[], GraphAsMatrix g)
@@ -80,5 +61,40 @@ int Prim::minKey(int key[], bool mstSet[], GraphAsMatrix g)
 
 
 void Prim::forList(GraphAsList g) {
+//    int n = g.vertices;
+//    int cost = 0;
+//    vector<bool> mst(n, false);
+//    vector<int> parent(n, -1);
+//    vector<int> key(n, INT_MAX);
+//    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> q;
+//
+//    q.push(make_pair(0, 0));
+//    key[0] = 0;
+//
+//    while (!q.empty()) {
+//        int u = q.top().second;
+//        q.pop();
+//
+//        if (mst[u])
+//            continue;
+//
+//        mst[u] = true;
+//        cost += key[u];
+//
+//        for (const auto& v : g[u]) {
+//            int node = v.first;
+//            int weight = v.second;
+//
+//            if (!mst[node] && weight < key[node]) {
+//                parent[node] = u;
+//                key[node] = weight;
+//                q.push(make_pair(key[node], node));
+//            }
+//        }
+//    }
+//
+//    for (int i = 1; i < n; i++) {
+//        cout << parent[i] << " - " << i << " \t" << key[i] << " \n";
+//    }
 
 }

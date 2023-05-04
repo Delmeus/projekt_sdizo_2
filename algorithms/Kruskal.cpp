@@ -12,7 +12,7 @@ int Kruskal::forList(GraphAsList g) {
 
     std::sort(g.edges.begin(), g.edges.end());
 
-    auto ds = new DisjointSets(g.vertices);
+    auto ds = new DisjointSets(g.vertices, false);
     std::vector<std::pair<int, std::pair<int, int>>>::iterator it;
 
     for(it = g.edges.begin(); it != g.edges.end(); it++){
@@ -38,7 +38,7 @@ int Kruskal::forMatrix(GraphAsMatrix g) {
     int mst = 0; // Cost of min MST.
 
     // Initialize sets of disjoint sets.
-    auto ds = new DisjointSets(g.vertices);
+    auto ds = new DisjointSets(g.vertices, false);
 
     // Include minimum weight edges one by one
     int edge_count = 0;

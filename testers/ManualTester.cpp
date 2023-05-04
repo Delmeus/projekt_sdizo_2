@@ -31,7 +31,7 @@ void ManualTester::menu() {
     auto graph = new GraphAsList(size);
     auto graphM = new GraphAsMatrix(size);
     graph->readGraphFromFile();
-    graphM->readGraphFromFile();
+    graphM->readGraphFromFile("graph.txt");
     do {
         cout << endl;
         cout << "\n+------------------------------------------------------+"
@@ -53,6 +53,7 @@ void ManualTester::menu() {
         cin >> answer;
         switch (answer) {
             case 1: {
+                cout << "size " << size << " den " << density;
                 FileCreator::randomizeFile(size, density);
                 break;
             }
@@ -61,8 +62,10 @@ void ManualTester::menu() {
                 graph = new GraphAsList(size);
                 delete graphM;
                 graphM = new GraphAsMatrix(size);
+                std::string name;
+                cin >> name;
                 graph->readGraphFromFile();
-                graphM->readGraphFromFile();
+                graphM->readGraphFromFile(name);
                 break;
             }
             case 3:{
@@ -111,11 +114,10 @@ void ManualTester::menu() {
             }
             case 9:{
                 int cost;
-                auto prim = new Prim();
                 timer.start();
-                cost = prim->forMatrix(*graphM);
+                cost = Prim::forMatrix(*graphM);
                 timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| " << timer.micro() << " mis|" << endl;
+                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 cout << "Cost: " << cost << endl;
                 break;
             }

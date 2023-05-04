@@ -42,13 +42,24 @@ void FileCreator::randomizeFile(int size, double density) {
         std::uniform_int_distribution<> e(1, 9);
         std::uniform_int_distribution<> v(0, size - 1);
         file << size << " " << edges << " " << 0 << " " << size - 1 << "";
-        for (int i = 0; i < size - 1; i++) {
+
+        //pierwsza krawedz, aby dodawanie kolejnych w petli wykonywalo sie prawidlowo
+        vertex1 = 0;
+        do {
+            vertex2 = v(gen);
+        } while (vertex2 == 0);
+
+        file << "\n" << vertex1 << " " << vertex2 << " " << e(gen);
+        visited[vertex1] = true;
+        visited[vertex2] = true;
+
+
+        for (int i = 1; i < size - 1; i++) {
             // Losuj krawędź do dodania do drzewa
             do {
                 vertex1 = v(gen);
                 vertex2 = v(gen);
-            } while (vertex1 == vertex2 || (visited[vertex1] && visited[vertex2])); // powtarzaj, jeśli wylosowano zły wierzchołek
-
+            } while (vertex1 == vertex2 || (visited[vertex1] == visited[vertex2])); // powtarzaj, jeśli wylosowano zły wierzchołek
             // Dodaj krawędź do drzewa
 
             visited[vertex1] = visited[vertex2] = true;
@@ -63,6 +74,7 @@ void FileCreator::randomizeFile(int size, double density) {
                 else file << "\n" << vertex1 << " " << vertex2 << " " << e(gen); //wygeneruj krawedz o losowej wadze
             }
         }
+
         file.close();
     }
     else std::cout << "\nTHERE WAS A PROBLEM WITH OPENING FILE\n";

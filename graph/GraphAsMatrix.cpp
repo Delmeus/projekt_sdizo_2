@@ -13,8 +13,10 @@ GraphAsMatrix::GraphAsMatrix(int vertices){
     edges = nullptr;
 }
 
-void GraphAsMatrix::readGraphFromFile() {
-    std::ifstream file(R"(C:\Users\antek\Desktop\studia\4.sem\projekt_sdizo_2\files\graph.txt)");
+void GraphAsMatrix::readGraphFromFile(std::string s) {
+    std::string name = R"(C:\Users\antek\Desktop\studia\4.sem\projekt_sdizo_2\files\)" + s;
+    std::cout << "\n " << name;
+    std::ifstream file(name);
     if(file.is_open()) {
         std::string line;
         std::getline(file, line);
@@ -52,6 +54,7 @@ void GraphAsMatrix::readGraphFromFile() {
         }
         file.close();
     }
+    else std::cout << "\nTHERE WAS A PROBLEM WITH OPENING FILE";
 }
 
 void GraphAsMatrix::addEdge(int u, int v, int w) {

@@ -11,7 +11,7 @@ public:
     int *parent, *rank;
     int n;
 
-    DisjointSets(int n);
+    DisjointSets(int n, bool prim);
 
     int find(int u);
     void merge(int x, int y);
