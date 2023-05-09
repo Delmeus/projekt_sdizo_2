@@ -39,9 +39,13 @@ void ManualTester::menu() {
     //graphM->readGraphFromFile("graph.txt");
 
     //inicjalizacja grafu jako listy sasiedztwa
-    GraphAsList graph = FileOperator::readAsList("graph.txt");
+    //GraphAsList graph = FileOperator::readAsList("graph.txt");
+    GraphAsList graph(0);
+    graph.readGraphFromFile("graph.txt");
     //inicjalizacja grafu jako macierzy sasiedztwa
-    GraphAsMatrix graphM = FileOperator::readAsMatrix("graph.txt");
+    GraphAsMatrix graphM(0);
+    graphM.readGraphFromFile("graph.txt");
+    //GraphAsMatrix graphM = FileOperator::readAsMatrix("graph.txt");
 
     do {
         cout << endl;
@@ -76,8 +80,10 @@ void ManualTester::menu() {
                 std::cout << "Please insert source file (remember to add .txt extension)\nFilename: ";
                 cin >> name;
                 std::cout << "\nSearching for file in directory";
-                graph = FileOperator::readAsList("graph.txt");
-                graphM = FileOperator::readAsMatrix("graph.txt");
+                graph.readGraphFromFile("graph.txt");
+                //graph = FileOperator::readAsList("graph.txt");
+                graphM.readGraphFromFile("graph.txt");
+                //FileOperator::readAsMatrix("graph.txt", graphM);
                 waitForResponse();
                 system("CLS");
                 break;

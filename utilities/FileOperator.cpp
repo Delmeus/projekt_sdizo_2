@@ -133,6 +133,7 @@ GraphAsMatrix FileOperator::readAsMatrix(std::string s) {
         ss >> size >> edgesNumber;
         GraphAsMatrix graph(size);
 
+
         for(int i = 0; i < edgesNumber; i++){
             std::getline(file, line);
             std::stringstream info(line);
@@ -147,6 +148,7 @@ GraphAsMatrix FileOperator::readAsMatrix(std::string s) {
             std::cout << "\nzczytane, wartosc: " << graph.edges[u][v];
 
         }
+        graph.display();
         file.close();
         return graph;
     }
