@@ -13,10 +13,12 @@ private:
 public:
     int **edges; // krawędzie grafu
     int vertices; // liczba wierzchołków
-    GraphAsMatrix(int vertices);
+    GraphAsMatrix(int v);
     void readGraphFromFile(std::string s);
     void addEdge(int u, int v, int w);
     void display() const;
+
+    virtual ~GraphAsMatrix();
 
 };
 

@@ -34,10 +34,14 @@ void ManualTester::menu() {
     //inicjalizacja grafu reprezentowanego jako liste
     //auto graph = new GraphAsList(size);
     //inicjalizacja grafu reprezentowanego jako macierz
-    auto graphM = new GraphAsMatrix(size);
+    //auto graphM = new GraphAsMatrix(size);
     //graph->readGraphFromFile("graph.txt");
+    //graphM->readGraphFromFile("graph.txt");
+
+    //inicjalizacja grafu jako listy sasiedztwa
     GraphAsList graph = FileOperator::readAsList("graph.txt");
-    graphM->readGraphFromFile("graph.txt");
+    //inicjalizacja grafu jako macierzy sasiedztwa
+    GraphAsMatrix graphM = FileOperator::readAsMatrix("graph.txt");
 
     do {
         cout << endl;
@@ -67,105 +71,127 @@ void ManualTester::menu() {
                 break;
             }
             case 2:{
-//                delete graph;
-//                graph = new GraphAsList(size);
-                delete graphM;
-                graphM = new GraphAsMatrix(size);
                 std::string name;
                 system("CLS");
                 std::cout << "Please insert source file (remember to add .txt extension)\nFilename: ";
                 cin >> name;
                 std::cout << "\nSearching for file in directory";
-                graph.readGraphFromFile(name);
-                graphM->readGraphFromFile(name);
+                graph = FileOperator::readAsList("graph.txt");
+                graphM = FileOperator::readAsMatrix("graph.txt");
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 3:{
                 graph.display();
-                graphM->display();
+                cout << "\nsize es " << graphM.vertices;
+                graphM.display();
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 4:{
-                int cost;
-                timer.start();
-                cost = Kruskal::forList(graph);
-                timer.stop();
-                cout << "Cost: " << cost << endl;
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                if(graph.vertices > 0){
+                    int cost;
+                    timer.start();
+                    cost = Kruskal::forList(graph);
+                    timer.stop();
+                    cout << "Cost: " << cost << endl;
+                    cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                }
+                else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 5:{
-                int cost;
-                timer.start();
-                cost = Prim::forList(graph);
-                timer.stop();
-                cout << "Cost: " << cost << endl;
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                if(graph.vertices > 0){
+                    int cost;
+                    timer.start();
+                    cost = Prim::forList(graph);
+                    timer.stop();
+                    cout << "Cost: " << cost << endl;
+                    cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                }
+                else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 6:{
-                timer.start();
-                testDijkstraList(graph);
-                timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                if(graph.vertices > 0){
+                    timer.start();
+                    testDijkstraList(graph);
+                    timer.stop();
+                    cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                }
+                else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 7:{
-                timer.start();
-                testBellmanFordList(graph);
-                timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                if(graph.vertices > 0){
+                    timer.start();
+                    testBellmanFordList(graph);
+                    timer.stop();
+                    cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                }
+                else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 8:{
-                int cost;
-                timer.start();
-                cost = Kruskal::forMatrix(*graphM);
-                timer.stop();
-                cout << "Cost: " << cost << endl;
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                if(graphM.vertices > 0) {
+                    int cost;
+                    timer.start();
+                    cost = Kruskal::forMatrix(graphM);
+                    timer.stop();
+                    cout << "Cost: " << cost << endl;
+                    cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                }
+                else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 9:{
-                int cost;
-                timer.start();
-                cost = Prim::forMatrix(*graphM);
-                timer.stop();
-                cout << "Cost: " << cost << endl;
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                if(graphM.vertices > 0) {
+                    int cost;
+                    timer.start();
+                    cost = Prim::forMatrix(graphM);
+                    timer.stop();
+                    cout << "Cost: " << cost << endl;
+                    cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                }
+                else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 10:{
-                auto dijkstra = new Dijkstra();
-                timer.start();
-                dijkstra->forMatrix(*graphM, 0);
-                timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                if(graphM.vertices > 0) {
+                    auto dijkstra = new Dijkstra();
+                    timer.start();
+                    dijkstra->forMatrix(graphM, 0);
+                    timer.stop();
+                    cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                }
+                else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 11:{
-                timer.start();
-                testBellmanFordMatrix();
-                timer.stop();
-                cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
+                if(graphM.vertices > 0) {
+                    timer.start();
+                    testBellmanFordMatrix();
+                    timer.stop();
+                    cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|"
+                         << endl;
+                }
+                else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
                 waitForResponse();
                 system("CLS");
                 break;

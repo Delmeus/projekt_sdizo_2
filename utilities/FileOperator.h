@@ -7,11 +7,15 @@
 
 
 #include "../graph/GraphAsList.h"
+#include "../graph/GraphAsMatrix.h"
 
 class FileOperator {
 public:
     static void randomizeFile(int size, double density);
     static GraphAsList readAsList(std::string s);
+    static GraphAsMatrix readAsMatrix(std::string s);
+
+    FileOperator();
 };
 
 

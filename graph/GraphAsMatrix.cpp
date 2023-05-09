@@ -8,8 +8,24 @@
 #include "iostream"
 #include "iomanip"
 
-GraphAsMatrix::GraphAsMatrix(int vertices){
-    this->vertices = vertices;
+GraphAsMatrix::GraphAsMatrix(int v){
+    vertices = v;
+    edges = new int * [vertices];
+    for(int i = 0; i < vertices; ++i) edges[i] = new int[vertices];
+
+    for(int i = 0; i < vertices; i++) {
+        for (int j = 0; j < vertices; j++) {
+            edges[i][j] = INT_MAX;
+        }
+    }
+}
+
+GraphAsMatrix::~GraphAsMatrix() {
+    for(int i = 0; i < vertices; i++) {
+        delete[] edges[i];
+        edges[i] = nullptr;
+    }
+    delete[] edges;
     edges = nullptr;
 }
 
@@ -30,14 +46,7 @@ void GraphAsMatrix::readGraphFromFile(std::string s) {
             edges = nullptr;
         }
 
-        edges = new int * [vertices];
-        for(int i = 0; i < vertices; ++i) edges[i] = new int[vertices];
 
-        for(int i = 0; i < vertices; i++) {
-            for (int j = 0; j < vertices; j++) {
-                edges[i][j] = INT_MAX;
-            }
-        }
 
         for(int i = 0; i < edgesNumber; i++){
             std::getline(file, line);
@@ -62,24 +71,28 @@ void GraphAsMatrix::addEdge(int u, int v, int w) {
 }
 
 void GraphAsMatrix::display() const{
-    const int fieldWidth = 4; // szerokość pola wyświetlania
+    // szerokość pola wyświetlania
+    const int fieldWidth = 4;
     std::cout << "Graph as matrix" << std::endl;
 
-// wyswietlanie naglowkow kolumn
+    // wyswietlanie naglowkow kolumn
     std::cout << std::setw(fieldWidth) << " " << " | ";
     for (int j = 0; j < vertices; j++) {
         std::cout << std::setw(fieldWidth) << j << " ";
     }
     std::cout << std::endl;
 
-// wyswietlanie linii separatora
+    // wyswietlanie linii separatora
     std::cout << std::setfill('-') << std::setw(fieldWidth + 1) << "" << "+" << std::setw((fieldWidth + 1) * vertices) << "" << std::setfill(' ') << std::endl;
 
-// wyswietlanie zawartosci tablicy
+    // wyswietlanie zawartosci tablicy
     for (int i = 0; i < vertices; i++) {
         std::cout << std::setw(fieldWidth) << i << " | ";
         for (int j = 0; j < vertices; j++) {
-            std::cout << std::setw(fieldWidth) << edges[i][j] << " ";
+            if(edges[i][j] == INT_MAX )
+                std::cout << std::setw(fieldWidth) << "-" << " ";
+            else
+                std::cout << std::setw(fieldWidth) << edges[i][j] << " ";
         }
         std::cout << std::endl;
     }

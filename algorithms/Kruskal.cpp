@@ -46,7 +46,7 @@ int Kruskal::forMatrix(GraphAsMatrix g) {
         int min = INT_MAX, u = - 1, v = -1;
         for (int i = 0; i < g.vertices; i++) {
             for (int j = 0; j < g.vertices; j++) {
-                if (ds->find(i) != ds->find(j) && g.edges[i][j] < min && g.edges[i][j] > 0) {
+                if (ds->find(i) != ds->find(j) && g.edges[i][j] < min) {
                     min = g.edges[i][j];
                     u = i;
                     v = j;
@@ -55,8 +55,6 @@ int Kruskal::forMatrix(GraphAsMatrix g) {
         }
 
         ds->merge(u, v);
-//        printf("Edge %d:(%d, %d) cost:%d \n",
-//               edge_count++, u, v, min);
         std::cout << "Edge " << edge_count++ << ": (" << u << ", " << v << ")\t| cost" << min << std::endl;
         mst += min;
     }
