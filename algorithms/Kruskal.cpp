@@ -15,21 +15,21 @@ int Kruskal::forList(GraphAsList g) {
     auto ds = new DisjointSets(g.vertices, false);
     std::vector<std::pair<int, std::pair<int, int>>>::iterator it;
 
-    for(it = g.edges.begin(); it != g.edges.end(); it++){
-        int u = it->second.first;
-        int v = it->second.second;
-
-        int setU = ds->find(u);
-        int setV = ds->find(v);
-
-        if(setU != setV){
-            std::cout << u << " - " << v << "\t | cost: " << it->first << std::endl;
-
-            mst += it->first;
-
-            ds->merge(setU, setV);
-        }
-    }
+//    for(it = g.edges.begin(); it != g.edges.end(); it++){
+//        int u = it->second.first;
+//        int v = it->second.second;
+//
+//        int setU = ds->find(u);
+//        int setV = ds->find(v);
+//
+//        if(setU != setV){
+//            std::cout << u << " - " << v << "\t | cost: " << it->first << std::endl;
+//
+//            mst += it->first;
+//
+//            ds->merge(setU, setV);
+//        }
+//    }
 
     return mst;
 }

@@ -16,7 +16,7 @@ public:
     GraphAsMatrix(int vertices);
     void readGraphFromFile(std::string s);
     void addEdge(int u, int v, int w);
-    void display();
+    void display() const;
 
 };
 

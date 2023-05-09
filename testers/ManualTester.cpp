@@ -4,11 +4,12 @@
 
 #include "iostream"
 #include "ManualTester.h"
-#include "../utilities/FileCreator.h"
+#include "../utilities/FileOperator.h"
 #include "../graph/GraphAsList.h"
 #include "../graph/GraphAsMatrix.h"
 #include "../algorithms/Kruskal.h"
 #include "../algorithms/Prim.h"
+#include "../algorithms/Dijkstra.h"
 
 using namespace std;
 
@@ -29,12 +30,13 @@ void ManualTester::menu() {
     }while(size < 1 || density < 0 || density > 1);
     system("CLS");
 
-    FileCreator::randomizeFile(size, density);
+    FileOperator::randomizeFile(size, density);
     //inicjalizacja grafu reprezentowanego jako liste
-    auto graph = new GraphAsList(size);
+    //auto graph = new GraphAsList(size);
     //inicjalizacja grafu reprezentowanego jako macierz
     auto graphM = new GraphAsMatrix(size);
-    graph->readGraphFromFile("graph.txt");
+    //graph->readGraphFromFile("graph.txt");
+    GraphAsList graph = FileOperator::readAsList("graph.txt");
     graphM->readGraphFromFile("graph.txt");
 
     do {
@@ -59,60 +61,72 @@ void ManualTester::menu() {
 
         switch (answer) {
             case 1: {
-                cout << "size " << size << " den " << density;
-                FileCreator::randomizeFile(size, density);
-                cout << "\nGenerated random graph in file 'graph.txt'";
+                FileOperator::randomizeFile(size, density);
                 waitForResponse();
+                system("CLS");
                 break;
             }
             case 2:{
-                delete graph;
-                graph = new GraphAsList(size);
+//                delete graph;
+//                graph = new GraphAsList(size);
                 delete graphM;
                 graphM = new GraphAsMatrix(size);
                 std::string name;
+                system("CLS");
+                std::cout << "Please insert source file (remember to add .txt extension)\nFilename: ";
                 cin >> name;
-                graph->readGraphFromFile(name);
+                std::cout << "\nSearching for file in directory";
+                graph.readGraphFromFile(name);
                 graphM->readGraphFromFile(name);
+                waitForResponse();
+                system("CLS");
                 break;
             }
             case 3:{
-                graph->display();
+                graph.display();
                 graphM->display();
+                waitForResponse();
+                system("CLS");
                 break;
             }
             case 4:{
                 int cost;
                 timer.start();
-                cost = Kruskal::forList(*graph);
+                cost = Kruskal::forList(graph);
                 timer.stop();
                 cout << "Cost: " << cost << endl;
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 waitForResponse();
+                system("CLS");
                 break;
             }
             case 5:{
+                int cost;
                 timer.start();
-                testPrimList(*graph);
+                cost = Prim::forList(graph);
                 timer.stop();
+                cout << "Cost: " << cost << endl;
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 waitForResponse();
+                system("CLS");
                 break;
             }
             case 6:{
                 timer.start();
-                testDijkstraList(*graph);
+                testDijkstraList(graph);
                 timer.stop();
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 waitForResponse();
+                system("CLS");
                 break;
             }
             case 7:{
                 timer.start();
-                testBellmanFordList(*graph);
+                testBellmanFordList(graph);
                 timer.stop();
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 waitForResponse();
+                system("CLS");
                 break;
             }
             case 8:{
@@ -123,6 +137,7 @@ void ManualTester::menu() {
                 cout << "Cost: " << cost << endl;
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 waitForResponse();
+                system("CLS");
                 break;
             }
             case 9:{
@@ -133,14 +148,17 @@ void ManualTester::menu() {
                 cout << "Cost: " << cost << endl;
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 waitForResponse();
+                system("CLS");
                 break;
             }
             case 10:{
+                auto dijkstra = new Dijkstra();
                 timer.start();
-                testDijkstraMatrix();
+                dijkstra->forMatrix(*graphM, 0);
                 timer.stop();
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 waitForResponse();
+                system("CLS");
                 break;
             }
             case 11:{
@@ -149,6 +167,7 @@ void ManualTester::menu() {
                 timer.stop();
                 cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 waitForResponse();
+                system("CLS");
                 break;
             }
             case 12:{
@@ -159,6 +178,8 @@ void ManualTester::menu() {
                     cin >> density;
                     if(size < 1) cout << "\nSize has to be greater than 0 and density has to be between 0 to 1" << endl;
                 }while(size < 1 || !(density > 0 && density <= 1));
+                cout << "\nSuccessfully set size to: " << size << " and density to: " << density;
+                waitForResponse();
                 system("CLS");
                 break;
             }
@@ -168,12 +189,13 @@ void ManualTester::menu() {
             }
             default:{
                 cout << "\nWrong answer, try again" << endl;
+                waitForResponse();
+                system("CLS");
                 break;
             }
         }
     }while(answer != 13);
 }
-
 
 void ManualTester::testKruskalMatrix() {
 

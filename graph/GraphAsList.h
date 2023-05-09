@@ -12,12 +12,12 @@
 class GraphAsList {
 public:
     int vertices; // liczba wierzchołków
-    std::vector<std::pair<int, std::pair<int, int>>> edges; // krawędzie grafu: waga, {wierzchołek, wierzchołek}
+    std::vector<std::vector<int>> edges;
+
 
     void readGraphFromFile(std::string s);
     void addEdge(int u, int v, int w);
     void display();
-    int getVertices();
 
     GraphAsList(int v);
 };

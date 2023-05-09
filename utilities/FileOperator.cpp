@@ -3,34 +3,14 @@
 //
 
 #include <iostream>
-#include "FileCreator.h"
+#include <sstream>
+#include "FileOperator.h"
 #include "fstream"
 #include "random"
 
-void FileCreator::randomizeFile(int size, double density) {
+void FileOperator::randomizeFile(int size, double density) {
 
-//    std::ofstream file(R"(C:\Users\antek\Desktop\studia\4.sem\projekt_sdizo_2\files\graph.txt)");
-//    int vertex1, vertex2;
-//    if(density > 1) density = 1;
-//    int edges = floor(floor(size * (size -1))/2 * density); //maksymalna ilosc krawedzi pomnzona przez gestosc
-//    std::random_device rd;
-//    std::mt19937 gen(rd());
-//    std::uniform_int_distribution<> e(1, 9);
-//    std::uniform_int_distribution<> v(0, size - 1);
-//    file << size << " " << edges << " " << 0 << " " << size - 1 << "";
-//    for (int i = 0; i < edges; i++)
-//    {
-//        vertex1 = v(gen); // wygeneruj wierzcholek poczatkowy
-//        vertex2 = v(gen);
-//        if(vertex1 == vertex2){
-//            file << "\n" << vertex1 << " " << vertex2 << " " << 0; //jezeli wierzcholek docelowy i zrodlowy sa tymi samymi to ustaw wage krawedzi na 0
-//        }
-//        else{
-//            file << "\n" << vertex1 << " " << vertex2 << " " << e(gen); //wygeneruj krawedz o losowej wadze
-//        }
-//    }
-//    file.close();
-    std::ofstream file(R"(C:\Users\antek\Desktop\studia\4.sem\projekt_sdizo_2\files\graph.txt)");
+    std::ofstream file(R"(G:\projekt_SDiZO_2\files\graph.txt)");
     if(file.is_open()) {
         bool visited[size];
         for(int i = 0; i < size; i++) visited[i] = false;
@@ -78,4 +58,29 @@ void FileCreator::randomizeFile(int size, double density) {
         file.close();
     }
     else std::cout << "\nTHERE WAS A PROBLEM WITH OPENING FILE\n";
+}
+
+GraphAsList FileOperator::readAsList(std::string s) {
+    std::string name = R"(G:\projekt_SDiZO_2\files\)" + s;
+    std::cout << "\n " << name;
+    std::ifstream file(name);
+    if(file.is_open()) {
+        std::string line;
+        std::getline(file, line);
+        int size, edgesNumber;
+        int u, v, w;
+        std::stringstream ss(line);
+        ss >> size >> edgesNumber;
+        GraphAsList graph = *new GraphAsList(size);
+        for(int i = 0; i < edgesNumber; i++){
+            std::getline(file, line);
+            std::stringstream info(line);
+            info >> u >> v >> w;
+            graph.addEdge(u, v, w);
+        }
+        file.close();
+        return graph;
+    }
+    else std::cout << "\nTHERE WAS A PROBLEM WITH OPENING THE FILE";
+    return {0};
 }

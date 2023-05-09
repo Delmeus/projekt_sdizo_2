@@ -10,9 +10,13 @@
 #include "../graph/GraphAsMatrix.h"
 
 class Dijkstra {
+private:
+    int minDistance(int distance[], bool pathSet[], GraphAsMatrix g);
+public:
     void forList(GraphAsList g);
-    void forMatrix(GraphAsMatrix g);
+    void forMatrix(GraphAsMatrix g, int beginning);
 };
+
 
 
 #endif //PROJEKT_SDIZO_2_DIJKSTRA_H

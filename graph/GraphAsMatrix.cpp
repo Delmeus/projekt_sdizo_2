@@ -14,7 +14,7 @@ GraphAsMatrix::GraphAsMatrix(int vertices){
 }
 
 void GraphAsMatrix::readGraphFromFile(std::string s) {
-    std::string name = R"(C:\Users\antek\Desktop\studia\4.sem\projekt_sdizo_2\files\)" + s;
+    std::string name = R"(G:\projekt_SDiZO_2\files\)" + s;
     std::cout << "\n " << name;
     std::ifstream file(name);
     if(file.is_open()) {
@@ -35,7 +35,7 @@ void GraphAsMatrix::readGraphFromFile(std::string s) {
 
         for(int i = 0; i < vertices; i++) {
             for (int j = 0; j < vertices; j++) {
-                edges[i][j] = 0;
+                edges[i][j] = INT_MAX;
             }
         }
 
@@ -61,20 +61,21 @@ void GraphAsMatrix::addEdge(int u, int v, int w) {
 
 }
 
-void GraphAsMatrix::display() {
+void GraphAsMatrix::display() const{
     const int fieldWidth = 4; // szerokość pola wyświetlania
+    std::cout << "Graph as matrix" << std::endl;
 
-// wyświetlanie nagłówków kolumn
+// wyswietlanie naglowkow kolumn
     std::cout << std::setw(fieldWidth) << " " << " | ";
     for (int j = 0; j < vertices; j++) {
         std::cout << std::setw(fieldWidth) << j << " ";
     }
     std::cout << std::endl;
 
-// wyświetlanie linii separatora
+// wyswietlanie linii separatora
     std::cout << std::setfill('-') << std::setw(fieldWidth + 1) << "" << "+" << std::setw((fieldWidth + 1) * vertices) << "" << std::setfill(' ') << std::endl;
 
-// wyświetlanie zawartości tablicy
+// wyswietlanie zawartosci tablicy
     for (int i = 0; i < vertices; i++) {
         std::cout << std::setw(fieldWidth) << i << " | ";
         for (int j = 0; j < vertices; j++) {

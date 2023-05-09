@@ -3,6 +3,7 @@
 //
 
 #include <queue>
+#include <set>
 #include "Prim.h"
 #include "iostream"
 #include "../utilities/DisjointSets.h"
@@ -38,29 +39,12 @@ int Prim::forMatrix(GraphAsMatrix g) {
 }
 
 bool Prim::createsMST(int u, int v, vector<bool> inMST){
-    if (u == v)
-        return false;
-    if (!inMST[u] && !inMST[v])
-        return false;
-    else if (inMST[u] && inMST[v])
+    if (u == v || (!inMST[u] && !inMST[v]) || (inMST[u] && inMST[v]))
         return false;
     return true;
 }
 
-int Prim::minKey(int key[], bool mstSet[], GraphAsMatrix g)
-{
-    // Initialize min value
-    int min = INT_MAX, min_index;
-
-    for (int v = 0; v < g.vertices; v++)
-        if (!mstSet[v] && key[v] < min && key[v] != 0)
-            min = key[v], min_index = v;
-
-    return min_index;
-}
-
-
-void Prim::forList(GraphAsList g) {
+int Prim::forList(GraphAsList g) {
 //    int n = g.vertices;
 //    int cost = 0;
 //    vector<bool> mst(n, false);
@@ -68,7 +52,7 @@ void Prim::forList(GraphAsList g) {
 //    vector<int> key(n, INT_MAX);
 //    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> q;
 //
-//    q.push(make_pair(0, 0));
+//    q.emplace(0, 0);
 //    key[0] = 0;
 //
 //    while (!q.empty()) {
@@ -79,22 +63,60 @@ void Prim::forList(GraphAsList g) {
 //            continue;
 //
 //        mst[u] = true;
-//        cost += key[u];
 //
-//        for (const auto& v : g[u]) {
-//            int node = v.first;
-//            int weight = v.second;
+//        std::vector<std::pair<int, std::pair<int, int>>>::iterator v;
+//
+//        for (v = g.edges.begin(); v != g.edges.end(); v++) {
+//            int node = v->second.second;
+//            int weight = v->first;
 //
 //            if (!mst[node] && weight < key[node]) {
 //                parent[node] = u;
 //                key[node] = weight;
-//                q.push(make_pair(key[node], node));
+//                q.emplace(key[node], node);
 //            }
 //        }
 //    }
 //
 //    for (int i = 1; i < n; i++) {
 //        cout << parent[i] << " - " << i << " \t" << key[i] << " \n";
+//        cost += key[i];
 //    }
+//
+//    return cost;
+    int n = g.vertices;
+    int cost = 0;
+    vector<bool> mst(n, false);
+    vector<int> parent(n, -1);
+    vector<int> key(n, INT_MAX);
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> q;
+
+    q.emplace(0, 0);
+    key[0] = 0;
+
+    while (!q.empty()) {
+        int u = q.top().second;
+        q.pop();
+
+        if (mst[u])
+            continue;
+
+        mst[u] = true;
+
+//        for (auto& [v, w] : g.adj[u]) {  // zmiana w tej linii
+//            if (!mst[v] && w < key[v]) {
+//                parent[v] = u;
+//                key[v] = w;
+//                q.emplace(key[v], v);
+//            }
+//        }
+    }
+
+    for (int i = 1; i < n; i++) {
+        cout << parent[i] << " - " << i << " \t" << key[i] << " \n";
+        cost += key[i];
+    }
+
+    return cost;
 
 }
