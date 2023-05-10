@@ -41,9 +41,11 @@ void ManualTester::menu() {
     //inicjalizacja grafu jako listy sasiedztwa
     //GraphAsList graph = FileOperator::readAsList("graph.txt");
     GraphAsList graph(0);
+    //auto graph = new GraphAsList(0);
     graph.readGraphFromFile("graph.txt");
     //inicjalizacja grafu jako macierzy sasiedztwa
     GraphAsMatrix graphM(0);
+    //auto graphM= new GraphAsMatrix(0);
     graphM.readGraphFromFile("graph.txt");
     //GraphAsMatrix graphM = FileOperator::readAsMatrix("graph.txt");
 
@@ -90,7 +92,6 @@ void ManualTester::menu() {
             }
             case 3:{
                 graph.display();
-                cout << "\nsize es " << graphM.vertices;
                 graphM.display();
                 waitForResponse();
                 system("CLS");
@@ -127,7 +128,7 @@ void ManualTester::menu() {
             case 6:{
                 if(graph.vertices > 0){
                     timer.start();
-                    testDijkstraList(graph);
+                    //testDijkstraList(graph);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
@@ -139,7 +140,7 @@ void ManualTester::menu() {
             case 7:{
                 if(graph.vertices > 0){
                     timer.start();
-                    testBellmanFordList(graph);
+                    //testBellmanFordList(graph);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
@@ -152,7 +153,7 @@ void ManualTester::menu() {
                 if(graphM.vertices > 0) {
                     int cost;
                     timer.start();
-                    cost = Kruskal::forMatrix(graphM);
+                    cost =Kruskal::forMatrix(graphM);
                     timer.stop();
                     cout << "Cost: " << cost << endl;
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
@@ -192,10 +193,9 @@ void ManualTester::menu() {
             case 11:{
                 if(graphM.vertices > 0) {
                     timer.start();
-                    testBellmanFordMatrix();
+                    //testBellmanFordMatrix();
                     timer.stop();
-                    cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|"
-                         << endl;
+                    cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
                 else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
                 waitForResponse();
@@ -229,36 +229,12 @@ void ManualTester::menu() {
     }while(answer != 13);
 }
 
-void ManualTester::testKruskalMatrix() {
-
-}
-
-void ManualTester::testPrimList(GraphAsList g) {
-
-}
-
-void ManualTester::testPrimMatrix() {
-
-}
-
-void ManualTester::testDijkstraList(GraphAsList g) {
-
-}
-
-void ManualTester::testDijkstraMatrix() {
-
-}
-
-void ManualTester::testBellmanFordList(GraphAsList g) {
-
-}
-
-void ManualTester::testBellmanFordMatrix() {
-
-}
-
 void ManualTester::waitForResponse() {
     std::cout << "\n\npress ENTER to continue..." << std::endl;
     std::cin.ignore(10000, '\n');
     getchar();
+}
+
+void ManualTester::testKruskalMatrix() {
+
 }

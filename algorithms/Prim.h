@@ -11,10 +11,10 @@
 
 class Prim {
 private:
-    static bool createsMST(int u, int v, std::vector<bool> inMST);
+    static bool isValidEdge(int u, int v, std::vector<bool> inMST);
 public:
     static int forList(GraphAsList g);
-    static int forMatrix(GraphAsMatrix g);
+    static int forMatrix(GraphAsMatrix &g);
 };
 
 

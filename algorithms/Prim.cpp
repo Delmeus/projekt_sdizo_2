@@ -11,36 +11,42 @@
 
 using namespace std;
 
-int Prim::forMatrix(GraphAsMatrix g) {
+int Prim::forMatrix(GraphAsMatrix &g) {
+    //do przechowywania czy dane wierzcholki
+    //znajduja sie juz w MST
     vector<bool> inMST(g.vertices, false);
+
+    //Zaczynamy od pierwszego wierzcholka
     inMST[0] = true;
-    int count = 0, cost = 0;
-    while (count < g.vertices - 1) {
-        int min = INT_MAX, u = -1, v = -1;
+
+    int edge_count = 0, mincost = 0;
+    while (edge_count < g.vertices - 1) {
+        int min = INT_MAX, a = -1, b = -1;
         for (int i = 0; i < g.vertices; i++) {
             for (int j = 0; j < g.vertices; j++) {
-                if (g.edges[i][j] < min && g.edges[i][j] != 0) {
-                    if (createsMST(i, j, inMST)) {
+                if (g.edges[i][j] < min) {
+                    if (isValidEdge(i, j, inMST)) {
                         min = g.edges[i][j];
-                        u = i;
-                        v = j;
+                        a = i;
+                        b = j;
                     }
                 }
             }
         }
-        if (u != -1 && v != -1) {
-            cout << "Edge " << count++ << " : (" << u << " , " << v << " ) : cost = " << min << endl;
-            cost += min;
-            inMST[v] = inMST[u] = true;
+        if (a != -1 && b != -1) {
+            std::cout << "Edge " << edge_count++ << ": " << a << " - " << b << " | cost = " << min << endl;
+            mincost = mincost + min;
+            inMST[b] = inMST[a] = true;
         }
     }
-    return cost;
-
+    return mincost;
 }
 
-bool Prim::createsMST(int u, int v, vector<bool> inMST){
-    if (u == v || (!inMST[u] && !inMST[v]) || (inMST[u] && inMST[v]))
+bool Prim::isValidEdge(int u, int v, vector<bool> inMST)
+{
+    if ((u == v) || (!inMST[u] && !inMST[v]) || (inMST[u] && inMST[v]))
         return false;
+
     return true;
 }
 

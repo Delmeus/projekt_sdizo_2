@@ -11,10 +11,10 @@
 
 class Dijkstra {
 private:
-    int minDistance(int distance[], bool pathSet[], GraphAsMatrix g);
+    int minDistance(int distance[], bool pathSet[], GraphAsMatrix &g);
 public:
     void forList(GraphAsList g);
-    void forMatrix(GraphAsMatrix g, int beginning);
+    void forMatrix(GraphAsMatrix &g, int beginning);
 };
 
 

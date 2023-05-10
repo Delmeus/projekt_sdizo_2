@@ -9,7 +9,7 @@ void Dijkstra::forList(GraphAsList g) {
 
 }
 
-void Dijkstra::forMatrix(GraphAsMatrix g, int beginning) {
+void Dijkstra::forMatrix(GraphAsMatrix &g, int beginning) {
     int distance[g.vertices];
 
     bool pathSet[g.vertices];
@@ -40,7 +40,7 @@ void Dijkstra::forMatrix(GraphAsMatrix g, int beginning) {
 
 }
 
-int Dijkstra::minDistance(int *distance, bool *pathSet, GraphAsMatrix g) {
+int Dijkstra::minDistance(int *distance, bool *pathSet, GraphAsMatrix &g) {
     int min = INT_MAX, min_index;
 
     for(int v = 0; v < g.vertices; v++){

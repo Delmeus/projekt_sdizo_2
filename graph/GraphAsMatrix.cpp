@@ -28,12 +28,13 @@ GraphAsMatrix::~GraphAsMatrix() {
         }
         delete[] edges;
         edges = nullptr;
+        std::cout << "\nDeleting graph";
     }
 }
 
 void GraphAsMatrix::readGraphFromFile(std::string s) {
     std::string name = R"(G:\projekt_SDiZO_2\files\)" + s;
-    std::cout << "\nmacierz" << name;
+    std::cout << "\n" << name;
     std::ifstream file(name);
     if(file.is_open()) {
         std::string line;
@@ -42,21 +43,17 @@ void GraphAsMatrix::readGraphFromFile(std::string s) {
         int u, v, w;
         std::stringstream ss(line);
 
-        std::cout << "\nprzed usuwaniem";
         if (edges != nullptr && vertices > 0) {
             for(int i = 0; i < vertices; i++) {
                 std::cout << i;
                 delete[] edges[i];
                 edges[i] = nullptr;
             }
-            std::cout << "pofor";
             delete[] edges;
             edges = nullptr;
         }
 
-        std::cout << "\nudalo sie usunac";
         ss >> vertices >> edgesNumber;
-
         edges = new int * [vertices];
         for(int i = 0; i < vertices; ++i) edges[i] = new int[vertices];
 
@@ -65,8 +62,6 @@ void GraphAsMatrix::readGraphFromFile(std::string s) {
                 edges[i][j] = INT_MAX;
             }
         }
-
-        std::cout << "\nno elo";
 
         for(int i = 0; i < edgesNumber; i++){
             std::getline(file, line);
