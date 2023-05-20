@@ -8,10 +8,17 @@
 #include "fstream"
 #include "random"
 
+struct Edge {
+    int source;
+    int target;
+    int weight;
+};
+
+//funkcja do losowania grafu nieskierowanego pelnego
 void FileOperator::randomizeFile(int size, double density) {
 
     std::ofstream file(R"(G:\projekt_SDiZO_2\files\graph.txt)");
-    if(file.is_open()) {
+    /*if(file.is_open()) {
         //tablica do przechowywania czy wygenerowana
         //zostala krawedz z danym wierzcholkiem
         //aby ulatwic tworzenie grafu pelnego
@@ -21,6 +28,7 @@ void FileOperator::randomizeFile(int size, double density) {
         if (density > 1) density = 1;
         //maksymalna ilosc krawedzi pomnzona przez gestosc
         int edges = floor(floor(size * (size - 1)) / 2 * density);
+        //std::cout << "NUMBER OF EDGES " << edges;
 
         //inicjalizacja generatora liczb pseudolosowych
         std::random_device rd;
@@ -56,7 +64,9 @@ void FileOperator::randomizeFile(int size, double density) {
             file << "\n" << vertex1 << " " << vertex2 << " " << e(gen);
             visited[vertex1] = true;
             visited[vertex2] = true;
+            //notujemy, ze polaczenie istnieje
             exists[vertex1][vertex2] = true;
+            exists[vertex2][vertex1] = true;
 
 
             for (int i = 1; i < size - 1; i++) {
@@ -69,7 +79,9 @@ void FileOperator::randomizeFile(int size, double density) {
 
                 // Dodaj krawędź do drzewa
                 visited[vertex1] = visited[vertex2] = true;
+                //notujemy, ze polaczenie istnieje
                 exists[vertex1][vertex2] = true;
+                exists[vertex2][vertex1] = true;
                 file << "\n" << vertex1 << " " << vertex2 << " " << e(gen);
             }
 
@@ -79,15 +91,52 @@ void FileOperator::randomizeFile(int size, double density) {
                 for (int i = 0; i < edges - size; i++) {
                     vertex1 = v(gen);
                     vertex2 = v(gen);
-                    if (vertex1 == vertex2 || exists[vertex1][vertex2]) i--;
+                    if (vertex1 == vertex2 || exists[vertex1][vertex2] || exists[vertex2][vertex1]) i--;
                     else {
                         //wygeneruj krawedz o losowej wadze
                         file << "\n" << vertex1 << " " << vertex2 << " " << e(gen);
                         //odnotuj ze ta krawedz istnieje
                         exists[vertex1][vertex2] = true;
+                        exists[vertex2][vertex1] = true;
                     }
                 }
             }
+        }
+
+        file.close();
+    }*/
+    int edges = floor(floor(size * (size - 1)) / 2 * density);
+
+    if(file.is_open()) {
+        if (edges > size * (size - 1) / 2) {
+            std::cout << "Nieprawidłowa liczba krawędzi." << std::endl;
+            return;
+        }
+
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> weightDist(1, 9);
+        std::uniform_int_distribution<> vertexDist(0, size - 1);
+
+        std::vector<Edge> graph;
+        std::vector<std::vector<bool>> adjacencyMatrix(size, std::vector<bool>(size, false));
+
+        // Generuj krawędzie
+        int generatedEdges = 0;
+        while (generatedEdges < edges) {
+            int source = vertexDist(gen);
+            int target = vertexDist(gen);
+            if (source != target && !adjacencyMatrix[source][target]) {
+                graph.push_back({source, target, weightDist(gen)});
+                adjacencyMatrix[source][target] = adjacencyMatrix[target][source] = true;
+                generatedEdges++;
+            }
+        }
+
+        // Zapisz graf do pliku
+        file << size << " " << edges << std::endl;
+        for (const auto& edge : graph) {
+            file << edge.source << " " << edge.target << " " << edge.weight << std::endl;
         }
 
         file.close();

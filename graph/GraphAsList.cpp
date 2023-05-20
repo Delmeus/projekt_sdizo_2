@@ -15,8 +15,8 @@ GraphAsList::GraphAsList(int v) {
 
 void GraphAsList::readGraphFromFile(std::string s) {
     std::string name = R"(G:\projekt_SDiZO_2\files\)" + s;
-    std::cout << name;
     std::ifstream file(name);
+    std::cout << name;
     if(file.is_open()) {
         std::string line;
         std::getline(file, line);

@@ -47,35 +47,6 @@ int Kruskal::forList(GraphAsList &g) {
 
     return mst;
 
-//    DisjointSets ds(g.vertices, false);
-//
-//    // Tworzenie listy krawędzi z listy sąsiedztwa grafu
-//    std::vector<Edge> edges;
-//    //PROBLEM JEST TUTAJ
-//    for (int u = 0; u < g.vertices; u++) {
-//        for (int i = 0; i < g.edges[u].size(); i += 2) {
-//            int v = g.edges[u][i];
-//            int w = g.edges[u][i + 1];
-//            edges.emplace_back(u, v, w);
-//        }
-//    }
-//
-//    for(auto e : edges){
-//        int u = e.u;
-//        int v = e.v;
-//        cout << " hehe";
-//        int setU = ds.find(u);
-//        int setV = ds.find(v);
-//        std::cout << "tu jestem";
-//        if(setU != setV){
-//            std::cout << u << " - " << v << "\t | cost: " << std::endl;
-//        }
-//    }
-
-    priority_queue<int, std::vector<int>, std::greater<> > edges;
-
-    return 0;
-
 }
 
 int Kruskal::forMatrix(GraphAsMatrix &g) {
@@ -99,7 +70,7 @@ int Kruskal::forMatrix(GraphAsMatrix &g) {
         }
 
         ds->merge(u, v);
-        std::cout << "Edge " << edge_count++ << ": (" << u << ", " << v << ")\t| cost = " << min << std::endl;
+        std::cout << "Edge " << edge_count++ << ": (" << u << ", " << v << ")\t\t\t| cost = " << min << std::endl;
         mst += min;
     }
 

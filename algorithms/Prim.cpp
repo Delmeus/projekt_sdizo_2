@@ -140,7 +140,7 @@ int Prim::forList(GraphAsList &g) {
                     //zaznaczamy jaki jest minimalny koszt dla wierzcholka v
                     minCost[v] = w;
                     //umieszczamy krawedz w kolejce
-                    pq.emplace(w, make_pair(v,u));
+                    pq.emplace(w, make_pair(u, v));
                 }
             }
         }
@@ -151,7 +151,7 @@ int Prim::forList(GraphAsList &g) {
 
     //wyswietlenie mst
     for (int i = 1; i < g.vertices; ++i) {
-        cout << i << " - " << parent[i] << " : " << minCost[i] << endl;
+        cout << "Edge\t" << i-1 << ":\t" << i << " - " << parent[i] << "\t| " << minCost[i] << endl;
         cost += minCost[i];
     }
 
