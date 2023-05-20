@@ -10,6 +10,7 @@
 #include "random"
 
 using namespace std;
+typedef pair<int, int> pii;
 
 int Prim::forMatrix(GraphAsMatrix &g) {
     //do przechowywania czy dane wierzcholki
@@ -50,79 +51,110 @@ bool Prim::isValidEdge(int u, int v, vector<bool> inMST)
     return true;
 }
 
-int Prim::forList(GraphAsList g) {
+int Prim::forList(GraphAsList &g) {
 //    int n = g.vertices;
-//    int cost = 0;
-//    vector<bool> mst(n, false);
+//    vector<bool> visited(n, false);
+//    vector<int> minCost(n, INT_MAX);
 //    vector<int> parent(n, -1);
-//    vector<int> key(n, INT_MAX);
-//    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> q;
+//    //kolejka do przetrzymywania mst
+//    priority_queue<pii, vector<pii>, greater<pii>> pq;
+//    //wybieramy wierzcholek startowy
+//    pq.emplace(0, 0);
+//    minCost[0] = 0;
 //
-//    q.emplace(0, 0);
-//    key[0] = 0;
-//
-//    while (!q.empty()) {
-//        int u = q.top().second;
-//        q.pop();
-//
-//        if (mst[u])
-//            continue;
-//
-//        mst[u] = true;
-//
-//        std::vector<std::pair<int, std::pair<int, int>>>::iterator v;
-//
-//        for (v = g.edges.begin(); v != g.edges.end(); v++) {
-//            int node = v->second.second;
-//            int weight = v->first;
-//
-//            if (!mst[node] && weight < key[node]) {
-//                parent[node] = u;
-//                key[node] = weight;
-//                q.emplace(key[node], node);
-//            }
-//        }
-//    }
-//
-//    for (int i = 1; i < n; i++) {
-//        cout << parent[i] << " - " << i << " \t" << key[i] << " \n";
-//        cost += key[i];
-//    }
-//
-//    return cost;
-    int n = g.vertices;
-    int cost = 0;
-    vector<bool> mst(n, false);
-    vector<int> parent(n, -1);
-    vector<int> key(n, INT_MAX);
-    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> q;
-
-    q.emplace(0, 0);
-    key[0] = 0;
-
-    while (!q.empty()) {
-        int u = q.top().second;
-        q.pop();
-
-        if (mst[u])
-            continue;
-
-        mst[u] = true;
-
-//        for (auto& [v, w] : g.adj[u]) {  // zmiana w tej linii
-//            if (!mst[v] && w < key[v]) {
+//    while (!pq.empty()) {
+//        int u = pq.top().second;
+//        pq.pop();
+//        visited[u] = true;
+//        cout << "\nULALALa u = " << u;
+//        int iteration = 0;
+//        for (const auto& edge : g.edges) {
+//            int v = edge.second.second;
+//            int weight = edge.first;
+//            if (!visited[v] && weight < minCost[v]) {
+//                cout << "\nu = " << u << " v = " << v << " w = " << weight;
+//                minCost[v] = weight;
 //                parent[v] = u;
-//                key[v] = w;
-//                q.emplace(key[v], v);
+//                if(iteration > 0) pq.pop();
+//                pq.emplace(minCost[v], v);
+//                iteration++;
 //            }
 //        }
+//    }
+//
+//    for (int i = 1; i < n; ++i) {
+//        cout << i << " - " << parent[i] << endl;
+//    }
+
+    //wektor w ktorym zapisujemy czy odwiedzilismy dany wierzcholek
+    vector<bool> visited(g.vertices, false);
+
+    //wektor do przechowywania najmniejszej wagi dla danego polaczenia
+    vector<int> minCost(g.vertices, INT_MAX);
+
+    //wektor do przechowywania rodzica kazdego wierzcholka
+    vector<int> parent(g.vertices, -1);
+
+    //kolejka do przechowywania mozliwych krawedzi
+    //priority_queue<pii, vector<pii>, greater<>> pq;
+    priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<>> pq;
+    //wybieramy wierzcholek startowy
+    pq.emplace(0,make_pair(0,0));
+
+    while(!pq.empty()){
+        //czytamy z kolejki wierzcholek o najmniejszej wadze
+        int u = pq.top().second.second;
+        //zdejmujemy ten element z kolejki
+        pq.pop();
+        //zaznaczmy ze odwiedzilismy ten wierzcholek
+        visited[u] = true;
+
+        for(auto edge : g.edges){
+            //jezeli poczatek krawedzi jest rowny naszemu u
+            if(edge.second.first == u) {
+                //czytamy koniec krawedzi
+                int v = edge.second.second;
+                //czytamy wage krawedzi
+                int w = edge.first;
+                //jezeli wierzcholek v nie byl jeszcze odwiedzony
+                //i jego koszt jest mniejszy niz wczesniejsze
+                if(!visited[v] && w < minCost[v]){
+                    //laczymy wierzcholek v z wierzcholkiem u w MST
+                    parent[v] = u;
+                    //zaznaczamy jaki jest minimalny koszt dla wierzcholka v
+                    minCost[v] = w;
+                    //umieszczamy krawedz w kolejce
+                    pq.emplace(w, make_pair(u,v));
+                }
+            }
+            else if(edge.second.second == u){
+                //czytamy poczatek krawedzi
+                int v = edge.second.first;
+                //czytamy wage krawedzi
+                int w = edge.first;
+                //jezeli wierzcholek v nie byl jeszcze odwiedzony
+                //i jego koszt jest mniejszy niz wczesniejsze
+                if(!visited[v] && w < minCost[v]){
+                    //laczymy wierzcholek v z wierzcholkiem u w MST
+                    parent[v] = u;
+                    //zaznaczamy jaki jest minimalny koszt dla wierzcholka v
+                    minCost[v] = w;
+                    //umieszczamy krawedz w kolejce
+                    pq.emplace(w, make_pair(v,u));
+                }
+            }
+        }
+    }
+    
+    //zmienna przechowujaca calkowity koszt
+    int cost = 0;
+
+    //wyswietlenie mst
+    for (int i = 1; i < g.vertices; ++i) {
+        cout << i << " - " << parent[i] << " : " << minCost[i] << endl;
+        cost += minCost[i];
     }
 
-    for (int i = 1; i < n; i++) {
-        cout << parent[i] << " - " << i << " \t" << key[i] << " \n";
-        cost += key[i];
-    }
-
-    return cost;
+    return  cost;
 
 }

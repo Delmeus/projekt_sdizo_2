@@ -82,9 +82,9 @@ void ManualTester::menu() {
                 std::cout << "Please insert source file (remember to add .txt extension)\nFilename: ";
                 cin >> name;
                 std::cout << "\nSearching for file in directory";
-                graph.readGraphFromFile("graph.txt");
+                graph.readGraphFromFile(name);
                 //graph = FileOperator::readAsList("graph.txt");
-                graphM.readGraphFromFile("graph.txt");
+                graphM.readGraphFromFile(name);
                 //FileOperator::readAsMatrix("graph.txt", graphM);
                 waitForResponse();
                 system("CLS");

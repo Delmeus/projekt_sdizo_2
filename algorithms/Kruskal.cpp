@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <queue>
 #include "Kruskal.h"
 #include "../utilities/DisjointSets.h"
 #include "vector"
@@ -19,70 +20,60 @@ bool edgeCompare(const Edge& a, const Edge& b) {
 }
 
 int Kruskal::forList(GraphAsList &g) {
-//    int mst = 0;
-//
-//    g.display();
-//    std::sort(g.edges.begin(), g.edges.end());
-//    for(int i = 0; i < g.vertices; i++)
-//        std::sort(g.edges[i].begin(), g.edges[i].end());
-//    g.display();
-//
-//    DisjointSets ds(g.vertices, false);
-//
 
-//    for(it = g.edges.begin(); it != g.edges.end(); it++){
-//        int u = it->second.first;
-//        int v = it->second.second;
-//
-//        int setU = ds->find(u);
-//        int setV = ds->find(v);
-//
-//        if(setU != setV){
-//            std::cout << u << " - " << v << "\t | cost: " << it->first << std::endl;
-//
-//            mst += it->first;
-//
-//            ds->merge(setU, setV);
-//        }
-//    }
+
+    int mst = 0;
+
+    std::sort(g.edges.begin(), g.edges.end());
 
     DisjointSets ds(g.vertices, false);
+    std::vector<std::pair<int, std::pair<int, int>>>::iterator it;
 
-    // Tworzenie listy krawędzi z listy sąsiedztwa grafu
-    std::vector<Edge> edges;
-    //PROBLEM JEST TUTAJ
-    for (int u = 0; u < g.vertices; u++) {
-        for (int i = 0; i < g.edges[u].size(); i += 2) {
-            int v = g.edges[u][i];
-            int w = g.edges[u][i + 1];
-            edges.emplace_back(u, v, w);
-        }
-    }
+    for(it = g.edges.begin(); it != g.edges.end(); it++){
+        int u = it->second.first;
+        int v = it->second.second;
 
-    for(auto e : edges){
-        int u = e.u;
-        int v = e.v;
-        cout << " hehe";
         int setU = ds.find(u);
         int setV = ds.find(v);
-        std::cout << "tu jestem";
+
         if(setU != setV){
-            std::cout << u << " - " << v << "\t | cost: " << std::endl;
+            std::cout << u << " - " << v << std::endl;
+
+            mst += it->first;
+
+            ds.merge(setU, setV);
         }
     }
 
-//    // Sortowanie krawędzi niemalejąco
-//    std::sort(edges.begin(), edges.end(), edgeCompare);
+    return mst;
+
+//    DisjointSets ds(g.vertices, false);
 //
-//    // Przetwarzanie krawędzi
-//    for (auto e : edges) {
-//        e.u = ds.find(e.u);
-//        e.v = ds.find(e.v);
-//        if (e.u != e.v) {
-//            ds.merge(e.u, e.v);
-//            std::cout << e.u << " - " << e.v << "\t | cost: " << std::endl;
+//    // Tworzenie listy krawędzi z listy sąsiedztwa grafu
+//    std::vector<Edge> edges;
+//    //PROBLEM JEST TUTAJ
+//    for (int u = 0; u < g.vertices; u++) {
+//        for (int i = 0; i < g.edges[u].size(); i += 2) {
+//            int v = g.edges[u][i];
+//            int w = g.edges[u][i + 1];
+//            edges.emplace_back(u, v, w);
 //        }
 //    }
+//
+//    for(auto e : edges){
+//        int u = e.u;
+//        int v = e.v;
+//        cout << " hehe";
+//        int setU = ds.find(u);
+//        int setV = ds.find(v);
+//        std::cout << "tu jestem";
+//        if(setU != setV){
+//            std::cout << u << " - " << v << "\t | cost: " << std::endl;
+//        }
+//    }
+
+    priority_queue<int, std::vector<int>, std::greater<> > edges;
+
     return 0;
 
 }

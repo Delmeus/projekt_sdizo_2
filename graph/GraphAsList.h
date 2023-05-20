@@ -12,7 +12,7 @@
 class GraphAsList {
 public:
     int vertices; // liczba wierzchołków
-    std::vector<std::vector<int>> edges;
+    std::vector<std::pair<int, std::pair<int,int>>> edges;
 
 
     void readGraphFromFile(std::string s);

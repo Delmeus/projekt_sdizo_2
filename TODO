@@ -1,0 +1,17 @@
+Kruskal list        DONE
+Kruskal matrix      DONE
+
+
+Prim list
+Prim matrix         DONE
+
+
+READ GRAPHS AS
+DIRECTED
+
+Dijkstra list
+Dijkstra matrix
+
+
+BellmanFord list
+BellmanFord matrix

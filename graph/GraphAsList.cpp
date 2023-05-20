@@ -10,7 +10,7 @@
 
 GraphAsList::GraphAsList(int v) {
     vertices = v;
-    edges.resize(v, std::vector<int>(v, std::numeric_limits<int>::max()));
+    edges.resize(v);
 }
 
 void GraphAsList::readGraphFromFile(std::string s) {
@@ -28,7 +28,7 @@ void GraphAsList::readGraphFromFile(std::string s) {
         ss >> size >> edgesNumber;
 
         vertices = size;
-        edges.resize(vertices, std::vector<int>(vertices, std::numeric_limits<int>::max()));
+        edges.clear();
 
         for(int i = 0; i < edgesNumber; i++){
             std::getline(file, line);
@@ -43,14 +43,13 @@ void GraphAsList::readGraphFromFile(std::string s) {
 }
 
 void GraphAsList::addEdge(int u, int v, int w) {
-    edges[u][v] = w;
+    edges.push_back({w, {u, v}});
 }
 
 void GraphAsList::display() {
     std::cout << "Graph as list:\n";
-    for (int u = 0; u < vertices; u++)
-        for(int v = 0; v < vertices; v++)
-            if(edges[u][v] != INT_MAX)
-                std::cout << u << " - " << v << " | weight = " << edges[u][v] << std::endl;
+    for (auto edge : edges) {
+        std::cout << edge.second.first << " - " << edge.second.second << " : " << edge.first << std::endl;
+    }
 }
 
