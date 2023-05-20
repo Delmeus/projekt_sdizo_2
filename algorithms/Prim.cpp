@@ -10,7 +10,6 @@
 #include "random"
 
 using namespace std;
-typedef pair<int, int> pii;
 
 int Prim::forMatrix(GraphAsMatrix &g) {
     //do przechowywania czy dane wierzcholki
@@ -35,7 +34,7 @@ int Prim::forMatrix(GraphAsMatrix &g) {
             }
         }
         if (a != -1 && b != -1) {
-            std::cout << "Edge " << edge_count++ << ": " << a << " - " << b << " | cost = " << min << endl;
+            std::cout << "Edge\t" << edge_count++ << ":\t" << a << " - " << b << "\t| cost = " << min << endl;
             mincost = mincost + min;
             inMST[b] = inMST[a] = true;
         }
@@ -52,39 +51,6 @@ bool Prim::isValidEdge(int u, int v, vector<bool> inMST)
 }
 
 int Prim::forList(GraphAsList &g) {
-//    int n = g.vertices;
-//    vector<bool> visited(n, false);
-//    vector<int> minCost(n, INT_MAX);
-//    vector<int> parent(n, -1);
-//    //kolejka do przetrzymywania mst
-//    priority_queue<pii, vector<pii>, greater<pii>> pq;
-//    //wybieramy wierzcholek startowy
-//    pq.emplace(0, 0);
-//    minCost[0] = 0;
-//
-//    while (!pq.empty()) {
-//        int u = pq.top().second;
-//        pq.pop();
-//        visited[u] = true;
-//        cout << "\nULALALa u = " << u;
-//        int iteration = 0;
-//        for (const auto& edge : g.edges) {
-//            int v = edge.second.second;
-//            int weight = edge.first;
-//            if (!visited[v] && weight < minCost[v]) {
-//                cout << "\nu = " << u << " v = " << v << " w = " << weight;
-//                minCost[v] = weight;
-//                parent[v] = u;
-//                if(iteration > 0) pq.pop();
-//                pq.emplace(minCost[v], v);
-//                iteration++;
-//            }
-//        }
-//    }
-//
-//    for (int i = 1; i < n; ++i) {
-//        cout << i << " - " << parent[i] << endl;
-//    }
 
     //wektor w ktorym zapisujemy czy odwiedzilismy dany wierzcholek
     vector<bool> visited(g.vertices, false);
@@ -151,7 +117,7 @@ int Prim::forList(GraphAsList &g) {
 
     //wyswietlenie mst
     for (int i = 1; i < g.vertices; ++i) {
-        cout << "Edge\t" << i-1 << ":\t" << i << " - " << parent[i] << "\t| " << minCost[i] << endl;
+        cout << "Edge\t" << i-1 << ":\t" << i << " - " << parent[i] << "\t| cost = " << minCost[i] << endl;
         cost += minCost[i];
     }
 

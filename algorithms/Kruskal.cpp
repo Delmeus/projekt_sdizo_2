@@ -22,7 +22,7 @@ bool edgeCompare(const Edge& a, const Edge& b) {
 int Kruskal::forList(GraphAsList &g) {
 
 
-    int mst = 0;
+    int mst = 0, edge_count = 0;
 
     std::sort(g.edges.begin(), g.edges.end());
 
@@ -37,8 +37,7 @@ int Kruskal::forList(GraphAsList &g) {
         int setV = ds.find(v);
 
         if(setU != setV){
-            std::cout << u << " - " << v << std::endl;
-
+            std::cout << "Edge\t" << edge_count++ << ":\t" << u << " - " << v << "\t| cost = " << it->first << std::endl;
             mst += it->first;
 
             ds.merge(setU, setV);
@@ -70,7 +69,7 @@ int Kruskal::forMatrix(GraphAsMatrix &g) {
         }
 
         ds->merge(u, v);
-        std::cout << "Edge " << edge_count++ << ": (" << u << ", " << v << ")\t\t\t| cost = " << min << std::endl;
+        std::cout << "Edge\t" << edge_count++ << ":\t" << u << " - " << v << "\t| cost = " << min << std::endl;
         mst += min;
     }
 

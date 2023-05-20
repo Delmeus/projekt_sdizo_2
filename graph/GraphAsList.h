@@ -15,7 +15,7 @@ public:
     std::vector<std::pair<int, std::pair<int,int>>> edges;
 
 
-    void readGraphFromFile(std::string s);
+    void readGraph(std::string s);
     void addEdge(int u, int v, int w);
     void display();
 

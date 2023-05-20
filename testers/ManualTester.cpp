@@ -20,38 +20,46 @@ ManualTester::ManualTester() {
 void ManualTester::menu() {
     int answer, size;
     double density;
+    GraphAsList graphListUndirected(0);
+    GraphAsMatrix graphMatrixUndirected(0);
+    GraphAsList graphListDirected(0);
+    GraphAsMatrix graphMatrixDirected(0);
 
-    do {
-        cout << "\nSize: ";
-        cin >> size;
-        cout << "\nDensity: ";
-        cin >> density;
-        if(size < 1) cout << "\nSize has to be greater than 0 and density has to be between 0 to 1";
-    }while(size < 1 || density < 0 || density > 1);
+    do{
+        cout << "What do you want to do?\n"
+                "1. Create new graph\n"
+                "2. Load graph from file" << endl;
+        cin >> answer;
+        if(answer == 1) {
+            do {
+                cout << "\nSize: ";
+                cin >> size;
+                cout << "\nDensity: ";
+                cin >> density;
+                if (size < 1) cout << "\nSize has to be greater than 0 and density has to be between 0 to 1";
+            } while (size < 1 || density < 0 || density > 1);
+            FileOperator::randomizeUndirected(size, density);
+            FileOperator::randomizeDirected(size, density);
+            graphListUndirected.readGraph("graphU.txt");
+            graphMatrixUndirected.readGraphUndirected("graphU.txt");
+            graphMatrixDirected.readGraphDirected("graphD.txt");
+        }
+        else if(answer == 2){
+            std::string name;
+            std::cout << "Please insert source file (remember to add .txt extension)\nFilename: ";
+            cin >> name;
+            std::cout << "\nSearching for file in directory";
+            graphListUndirected.readGraph(name);
+            graphMatrixUndirected.readGraphUndirected(name);
+            waitForResponse();
+        }
+    }while(answer != 1 && answer != 2);
     system("CLS");
 
-    FileOperator::randomizeFile(size, density);
-    //inicjalizacja grafu reprezentowanego jako liste
-    //auto graph = new GraphAsList(size);
-    //inicjalizacja grafu reprezentowanego jako macierz
-    //auto graphM = new GraphAsMatrix(size);
-    //graph->readGraphFromFile("graph.txt");
-    //graphM->readGraphFromFile("graph.txt");
-
-    //inicjalizacja grafu jako listy sasiedztwa
-    //GraphAsList graph = FileOperator::readAsList("graph.txt");
-    GraphAsList graph(0);
-    //auto graph = new GraphAsList(0);
-    graph.readGraphFromFile("graph.txt");
-    //inicjalizacja grafu jako macierzy sasiedztwa
-    GraphAsMatrix graphM(0);
-    //auto graphM= new GraphAsMatrix(0);
-    graphM.readGraphFromFile("graph.txt");
-    //GraphAsMatrix graphM = FileOperator::readAsMatrix("graph.txt");
 
     do {
         cout << endl;
-        cout << "\n+------------------------------------------------------+"
+        cout << "\n+-------------------------MENU-------------------------+"
              << "\n| 1.  Generate random file                             |"
              << "\n| 2.  Load graph from file                             |"
              << "\n| 3.  Display graph                                    |"
@@ -68,10 +76,14 @@ void ManualTester::menu() {
              << "\n+------------------------------------------------------+"
              << "\nAnswer: ";
         cin >> answer;
+        cout << endl;
 
         switch (answer) {
             case 1: {
-                FileOperator::randomizeFile(size, density);
+                FileOperator::randomizeUndirected(size, density);
+                graphListUndirected.readGraph("graphU.txt");
+                graphMatrixUndirected.readGraphUndirected("graphU.txt");
+                graphMatrixDirected.readGraphDirected("graphD.txt");
                 waitForResponse();
                 system("CLS");
                 break;
@@ -82,26 +94,27 @@ void ManualTester::menu() {
                 std::cout << "Please insert source file (remember to add .txt extension)\nFilename: ";
                 cin >> name;
                 std::cout << "\nSearching for file in directory";
-                graph.readGraphFromFile(name);
-                //graph = FileOperator::readAsList("graph.txt");
-                graphM.readGraphFromFile(name);
-                //FileOperator::readAsMatrix("graph.txt", graphM);
+                graphListUndirected.readGraph(name);
+                graphMatrixUndirected.readGraphUndirected(name);
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 3:{
-                graph.display();
-                graphM.display();
+                graphListUndirected.display();
+                cout << "Undirected: " << endl;
+                graphMatrixUndirected.display();
+                cout << "Directed: " << endl;
+                graphMatrixDirected.display();
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 4:{
-                if(graph.vertices > 0){
+                if(graphListUndirected.vertices > 0){
                     int cost;
                     timer.start();
-                    cost = Kruskal::forList(graph);
+                    cost = Kruskal::forList(graphListUndirected);
                     timer.stop();
                     cout << "Cost: " << cost << endl;
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
@@ -112,10 +125,10 @@ void ManualTester::menu() {
                 break;
             }
             case 5:{
-                if(graph.vertices > 0){
+                if(graphListUndirected.vertices > 0){
                     int cost;
                     timer.start();
-                    cost = Prim::forList(graph);
+                    cost = Prim::forList(graphListUndirected);
                     timer.stop();
                     cout << "Cost: " << cost << endl;
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
@@ -126,21 +139,21 @@ void ManualTester::menu() {
                 break;
             }
             case 6:{
-                if(graph.vertices > 0){
+                if(graphListUndirected.vertices > 0){
                     timer.start();
-                    //testDijkstraList(graph);
+                    //testDijkstraList(graphListUndirected);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
-                else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
+                else cout << "\nGraph does not exist, they might have been a problem with reading graphfrom file" << endl;
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 7:{
-                if(graph.vertices > 0){
+                if(graphListUndirected.vertices > 0){
                     timer.start();
-                    //testBellmanFordList(graph);
+                    //testBellmanFordList(graphListUndirected);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
@@ -150,10 +163,10 @@ void ManualTester::menu() {
                 break;
             }
             case 8:{
-                if(graphM.vertices > 0) {
+                if(graphMatrixUndirected.vertices > 0) {
                     int cost;
                     timer.start();
-                    cost =Kruskal::forMatrix(graphM);
+                    cost =Kruskal::forMatrix(graphMatrixUndirected);
                     timer.stop();
                     cout << "Cost: " << cost << endl;
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
@@ -164,10 +177,10 @@ void ManualTester::menu() {
                 break;
             }
             case 9:{
-                if(graphM.vertices > 0) {
+                if(graphMatrixUndirected.vertices > 0) {
                     int cost;
                     timer.start();
-                    cost = Prim::forMatrix(graphM);
+                    cost = Prim::forMatrix(graphMatrixUndirected);
                     timer.stop();
                     cout << "Cost: " << cost << endl;
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
@@ -178,10 +191,10 @@ void ManualTester::menu() {
                 break;
             }
             case 10:{
-                if(graphM.vertices > 0) {
+                if(graphMatrixUndirected.vertices > 0) {
                     auto dijkstra = new Dijkstra();
                     timer.start();
-                    dijkstra->forMatrix(graphM, 0);
+                    dijkstra->forMatrix(graphMatrixUndirected, 0);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
@@ -191,7 +204,7 @@ void ManualTester::menu() {
                 break;
             }
             case 11:{
-                if(graphM.vertices > 0) {
+                if(graphMatrixUndirected.vertices > 0) {
                     timer.start();
                     //testBellmanFordMatrix();
                     timer.stop();

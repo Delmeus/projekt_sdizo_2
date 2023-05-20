@@ -14,7 +14,8 @@ public:
     int **edges; // krawędzie grafu
     int vertices; // liczba wierzchołków
     GraphAsMatrix(int v);
-    void readGraphFromFile(std::string s);
+    void readGraphUndirected(std::string s);
+    void readGraphDirected(std::string s);
     void addEdge(int u, int v, int w);
     void display() const;
 

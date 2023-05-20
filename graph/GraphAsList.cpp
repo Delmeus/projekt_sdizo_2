@@ -13,10 +13,9 @@ GraphAsList::GraphAsList(int v) {
     edges.resize(v);
 }
 
-void GraphAsList::readGraphFromFile(std::string s) {
+void GraphAsList::readGraph(std::string s) {
     std::string name = R"(G:\projekt_SDiZO_2\files\)" + s;
     std::ifstream file(name);
-    std::cout << name;
     if(file.is_open()) {
         std::string line;
         std::getline(file, line);
@@ -52,4 +51,5 @@ void GraphAsList::display() {
         std::cout << edge.second.first << " - " << edge.second.second << " : " << edge.first << std::endl;
     }
 }
+
 

@@ -11,7 +11,8 @@
 
 class FileOperator {
 public:
-    static void randomizeFile(int size, double density);
+    static void randomizeUndirected(int size, double density);
+    static void randomizeDirected(int size, double density);
     static GraphAsList readAsList(std::string s);
     static GraphAsMatrix readAsMatrix(std::string s);
 

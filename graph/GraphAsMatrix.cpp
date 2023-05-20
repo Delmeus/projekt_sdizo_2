@@ -28,13 +28,11 @@ GraphAsMatrix::~GraphAsMatrix() {
         }
         delete[] edges;
         edges = nullptr;
-        std::cout << "\nDeleting graph";
     }
 }
 
-void GraphAsMatrix::readGraphFromFile(std::string s) {
+void GraphAsMatrix::readGraphUndirected(std::string s) {
     std::string name = R"(G:\projekt_SDiZO_2\files\)" + s;
-    std::cout << "\n" << name;
     std::ifstream file(name);
     if(file.is_open()) {
         std::string line;
@@ -67,11 +65,11 @@ void GraphAsMatrix::readGraphFromFile(std::string s) {
             std::getline(file, line);
             std::stringstream info(line);
             info >> u >> v >> w;
-            if(edges[u][v] > w || edges[u][v] == 0) {
+            if(edges[u][v] > w) {
                 edges[u][v] = w;
                 edges[v][u] = w;
             }
-            if(edges[v][u] > w || edges[v][u] == 0){
+            if(edges[v][u] > w){
                 edges[u][v] = w;
                 edges[v][u] = w;
             }
@@ -81,8 +79,49 @@ void GraphAsMatrix::readGraphFromFile(std::string s) {
     else std::cout << "\nTHERE WAS A PROBLEM WITH OPENING FILE";
 }
 
-void GraphAsMatrix::addEdge(int u, int v, int w) {
 
+void GraphAsMatrix::readGraphDirected(std::string s) {
+    std::string name = R"(G:\projekt_SDiZO_2\files\)" + s;
+    std::ifstream file(name);
+    if(file.is_open()) {
+        std::string line;
+        std::getline(file, line);
+        int edgesNumber;
+        int u, v, w;
+        std::stringstream ss(line);
+
+        if (edges != nullptr && vertices > 0) {
+            for(int i = 0; i < vertices; i++) {
+                std::cout << i;
+                delete[] edges[i];
+                edges[i] = nullptr;
+            }
+            delete[] edges;
+            edges = nullptr;
+        }
+
+        ss >> vertices >> edgesNumber;
+        edges = new int * [vertices];
+        for(int i = 0; i < vertices; ++i) edges[i] = new int[vertices];
+
+        for(int i = 0; i < vertices; i++) {
+            for (int j = 0; j < vertices; j++) {
+                edges[i][j] = INT_MAX;
+            }
+        }
+
+        for(int i = 0; i < edgesNumber; i++){
+            std::getline(file, line);
+            std::stringstream info(line);
+            info >> u >> v >> w;
+            if(edges[u][v] > w) {
+                edges[u][v] = w;
+
+            }
+        }
+        file.close();
+    }
+    else std::cout << "\nTHERE WAS A PROBLEM WITH OPENING FILE";
 }
 
 void GraphAsMatrix::display() const{
