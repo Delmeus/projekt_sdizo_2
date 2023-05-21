@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <queue>
 #include "FileOperator.h"
 #include "fstream"
 #include "random"
@@ -22,10 +23,6 @@ void FileOperator::randomizeUndirected(int size, double density) {
     int edges = floor(floor(size * (size - 1)) / 2 * density);
 
     if(file.is_open()) {
-        if (edges > size * (size - 1) / 2) {
-            std::cout << "Nieprawidłowa liczba krawędzi." << std::endl;
-            return;
-        }
 
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -68,18 +65,93 @@ void FileOperator::randomizeDirected(int size, double density) {
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> weightDist(0, 9);
+    std::uniform_int_distribution<> weightDist(1, 9);
+    std::uniform_int_distribution<> vertexDist(0, size - 1);
 
-    //maksymalna liczba krawedzi
-    int edges = size * (size - 1);
+    //liczba krawedzi
+    int edges = floor(floor(size * (size - 1)) * density);
 
     file << size << " " << edges << " " << 0 << " " << size - 1 << std::endl;
 
-    for (int u = 0; u < size; u++) {
-        for (int v = 0; v < size; v++) {
-            if (u != v) {
-                //Sprawdzenie czy generujemy kolejna krawedzi
-                double random = static_cast<double>(rand()) / RAND_MAX;
+    //jezeli graf jest pelny do generujemy kolejno krawedzie
+    //z losowymi wagami aby usprawnic szybkosc generowania
+    if (edges == size * (size - 1)) {
+        for (int u = 0; u < size; u++) {
+            for (int v = 0; v < size; v++) {
+                if (u != v) {
+                    file << u << " " << v << " " << weightDist(gen);
+                }
+            }
+        }
+    }
+    else {
+        bool exists[size][size];
+        bool visited[size];
+        int count = 0, vertex1 = 0, vertex2;
+
+        do {
+            vertex2 = vertexDist(gen);
+        } while (vertex2 == 0);
+
+        file << vertex1 << " " << vertex2 << " " << weightDist(gen);
+        visited[vertex1] = true;
+        visited[vertex2] = true;
+        //notujemy, ze polaczenie istnieje
+        exists[vertex1][vertex2] = true;
+        count++;
+
+        for (int i = 1; i < size - 1; i++) {
+            // Losuj krawędź do dodania do drzewa spinajacego
+            do {
+                vertex1 = vertexDist(gen);
+                vertex2 = vertexDist(gen);
+                // powtarzaj, jeśli wylosowano zły wierzchołek
+            } while (vertex1 == vertex2 || (visited[vertex1] == visited[vertex2]));
+            file << "\n" << vertex1 << " " << vertex2 << " " << weightDist(gen);
+            count++;
+
+        }
+
+        //jesli nie osiagnieto limitu krawedzi
+        //wylosuj pozostale
+        if (edges - count > 0) {
+            for (int i = 0; i < edges - count; i++) {
+                vertex1 = vertexDist(gen);
+                vertex2 = vertexDist(gen);
+                if (vertex1 == vertex2 || exists[vertex1][vertex2]) i--;
+                else {
+                    //wygeneruj krawedz o losowej wadze
+                    file << "\n" << vertex1 << " " << vertex2 << " " << weightDist(gen);
+                    //odnotuj ze ta krawedz istnieje
+                    exists[vertex1][vertex2] = true;
+                }
+            }
+        }
+
+        file.close();
+    }
+}
+
+/*void FileOperator::randomizeDirected(int size, double density) {
+    std::ofstream file(R"(G:\projekt_SDiZO_2\files\graphD.txt)");
+
+    if (!file.is_open()) {
+        std::cout << "\nTHERE WAS A PROBLEM WITH OPENING FILE" << std::endl;
+        return;
+    }
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> probDist(0.0, 1.0);
+    std::uniform_int_distribution<> weightDist(1, 9);
+
+    file << size << " " << 0 << " " << 0 << " " << size - 1 << std::endl;
+
+    // Generowanie losowych krawędzi między wierzchołkami, aż do uzyskania spójnego grafu
+    while (!isGraphConnected(size, file)) {
+        for (int u = 0; u < size - 1; u++) {
+            for (int v = u + 1; v < size; v++) {
+                double random = probDist(gen);
                 if (random <= density) {
                     int weight = weightDist(gen);
                     file << u << " " << v << " " << weight << std::endl;
@@ -90,5 +162,39 @@ void FileOperator::randomizeDirected(int size, double density) {
 
     file.close();
 }
+
+bool FileOperator::isGraphConnected(int size, std::ofstream& file) {
+    std::vector<bool> visited(size, false);
+    std::queue<int> queue;
+    int startVertex = 0;
+
+    visited[startVertex] = true;
+    queue.push(startVertex);
+
+    while (!queue.empty()) {
+        int currentVertex = queue.front();
+        queue.pop();
+
+        // Przetwarzaj krawędzie wychodzące z bieżącego wierzchołka
+        for (int v = 0; v < size; v++) {
+            if (v != currentVertex && !visited[v]) {
+                int weight = 1;  // Możesz dostosować wagę krawędzi, jeśli jest potrzebne
+                file << currentVertex << " " << v << " " << weight << std::endl;
+
+                visited[v] = true;
+                queue.push(v);
+            }
+        }
+    }
+
+    // Sprawdź, czy wszystkie wierzchołki zostały odwiedzone
+    for (int i = 0; i < size; i++) {
+        if (!visited[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}*/
 
 FileOperator::FileOperator() = default;

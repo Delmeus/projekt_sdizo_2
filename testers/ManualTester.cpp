@@ -194,7 +194,7 @@ void ManualTester::menu() {
                 if(graphMatrixUndirected.vertices > 0) {
                     auto dijkstra = new Dijkstra();
                     timer.start();
-                    dijkstra->forMatrix(graphMatrixUndirected, 0);
+                    dijkstra->forMatrix(graphMatrixDirected, 0);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
