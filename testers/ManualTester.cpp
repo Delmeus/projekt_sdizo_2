@@ -84,28 +84,41 @@ void ManualTester::menu() {
                 graphListUndirected.readGraph("graphU.txt");
                 graphMatrixUndirected.readGraphUndirected("graphU.txt");
                 graphMatrixDirected.readGraphDirected("graphD.txt");
+                graphListDirected.readGraph("graphD.txt");
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 2:{
-                std::string name;
+                std::string nameUndirected, nameDirected;
                 system("CLS");
-                std::cout << "Please insert source file (remember to add .txt extension)\nFilename: ";
-                cin >> name;
+                std::cout << "Please insert source file for UNDIRECTED graphs (remember to add .txt extension)\nFilename: ";
+                cin >> nameUndirected;
                 std::cout << "\nSearching for file in directory";
-                graphListUndirected.readGraph(name);
-                graphMatrixUndirected.readGraphUndirected(name);
+                graphListUndirected.readGraph(nameUndirected);
+                graphMatrixUndirected.readGraphUndirected(nameUndirected);
+                std::cout << "Please insert source file for DIRECTED graphs (remember to add .txt extension)\nFilename: ";
+                cin >> nameDirected;
+                std::cout << "\nSearching for file in directory";
+                graphListDirected.readGraph(nameDirected);
+                graphMatrixDirected.readGraphDirected(nameDirected);
                 waitForResponse();
                 system("CLS");
                 break;
             }
             case 3:{
+                cout << "Undirected: " << endl;
                 graphListUndirected.display();
+
                 cout << "Undirected: " << endl;
                 graphMatrixUndirected.display();
+
+                cout << "Directed: " << endl;
+                graphListDirected.display();
+
                 cout << "Directed: " << endl;
                 graphMatrixDirected.display();
+
                 waitForResponse();
                 system("CLS");
                 break;

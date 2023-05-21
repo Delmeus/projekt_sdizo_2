@@ -43,7 +43,6 @@ void GraphAsMatrix::readGraphUndirected(std::string s) {
 
         if (edges != nullptr && vertices > 0) {
             for(int i = 0; i < vertices; i++) {
-                std::cout << i;
                 delete[] edges[i];
                 edges[i] = nullptr;
             }
