@@ -7,10 +7,10 @@ Prim matrix         DONE
 
 
 READ GRAPHS AS
-DIRECTED
+DIRECTED            DONE
 
-Dijkstra list
-Dijkstra matrix
+Dijkstra list       DONE
+Dijkstra matrix     DONE
 
 
 BellmanFord list

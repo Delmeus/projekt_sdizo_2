@@ -64,6 +64,7 @@ void FileOperator::randomizeUndirected(int size, double density) {
             graph.push_back({vertex1, vertex2, weightDist(gen)});
             visited[vertex1] = true;
             visited[vertex2] = true;
+            adjacencyMatrix[vertex1][vertex2] = adjacencyMatrix[vertex2][vertex1] = true;
 
 
             //generujemy drzewo spinajace
@@ -75,6 +76,7 @@ void FileOperator::randomizeUndirected(int size, double density) {
                 visited[vertex1] = true;
                 visited[vertex2] = true;
                 graph.push_back({vertex1, vertex2, weightDist(gen)});
+                adjacencyMatrix[vertex1][vertex2] = adjacencyMatrix[vertex2][vertex1] = true;
             }
 
             //jezeli gestosc jest wieksza od 0.5 to latwiej
@@ -183,7 +185,8 @@ void FileOperator::randomizeDirected(int size, double density) {
         graph.push_back({vertex1, vertex2, weightDist(gen)});
         visited[vertex1] = true;
         visited[vertex2] = true;
-        
+        adjacencyMatrix[vertex1][vertex2] = true;
+
         //generujemy drzewo spinajace
         for (int i = 1; i < size - 1; i++) {
             do {
@@ -192,6 +195,7 @@ void FileOperator::randomizeDirected(int size, double density) {
             } while (vertex1 == vertex2 || (visited[vertex1] == visited[vertex2]));
             visited[vertex1] = true;
             visited[vertex2] = true;
+            adjacencyMatrix[vertex1][vertex2] = true;
             graph.push_back({vertex1, vertex2, weightDist(gen)});
         }
 

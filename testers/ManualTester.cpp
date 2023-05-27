@@ -44,15 +44,20 @@ void ManualTester::menu() {
             FileOperator::randomizeDirected(size, density);
             graphListUndirected.readGraph("graphU.txt");
             graphMatrixUndirected.readGraphUndirected("graphU.txt");
+
+            graphListDirected.readGraph("graphD.txt");
             graphMatrixDirected.readGraphDirected("graphD.txt");
         }
         else if(answer == 2){
-            std::string name;
-            std::cout << "Please insert source file (remember to add .txt extension)\nFilename: ";
-            cin >> name;
-            std::cout << "\nSearching for file in directory";
-            graphListUndirected.readGraph(name);
-            graphMatrixUndirected.readGraphUndirected(name);
+            std::string nameUndirected, nameDirected;
+            std::cout << "Please insert source file for UNDIRECTED graphs (remember to add .txt extension)\nFilename: ";
+            cin >> nameUndirected;
+            graphListUndirected.readGraph(nameUndirected);
+            graphMatrixUndirected.readGraphUndirected(nameUndirected);
+            std::cout << "Please insert source file for DIRECTED graphs (remember to add .txt extension)\nFilename: ";
+            cin >> nameDirected;
+            graphListDirected.readGraph(nameDirected);
+            graphMatrixDirected.readGraphDirected(nameDirected);
             waitForResponse();
         }
     }while(answer != 1 && answer != 2);
@@ -83,8 +88,11 @@ void ManualTester::menu() {
         switch (answer) {
             case 1: {
                 FileOperator::randomizeUndirected(size, density);
+                FileOperator::randomizeDirected(size, density);
+
                 graphListUndirected.readGraph("graphU.txt");
                 graphMatrixUndirected.readGraphUndirected("graphU.txt");
+
                 graphMatrixDirected.readGraphDirected("graphD.txt");
                 graphListDirected.readGraph("graphD.txt");
                 waitForResponse();
@@ -155,8 +163,9 @@ void ManualTester::menu() {
             }
             case 6:{
                 if(graphListUndirected.vertices > 0){
+                    auto dijkstra = new Dijkstra();
                     timer.start();
-                    //testDijkstraList(graphListUndirected);
+                    dijkstra->forList(graphListDirected, 0);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
@@ -181,7 +190,7 @@ void ManualTester::menu() {
                 if(graphMatrixUndirected.vertices > 0) {
                     int cost;
                     timer.start();
-                    cost =Kruskal::forMatrix(graphMatrixUndirected);
+                    cost = Kruskal::forMatrix(graphMatrixUndirected);
                     timer.stop();
                     cout << "Cost: " << cost << endl;
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
