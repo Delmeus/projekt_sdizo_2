@@ -23,6 +23,10 @@ void FileOperator::randomizeUndirected(int size, double density) {
 
     int edges = floor(floor(size * (size - 1)) / 2 * density);
 
+    std::cout << "Undirected graph" << std::endl
+    << "For size " << size << " and density "<< density
+    << " we get " << edges << " edges" << std::endl;;
+
     if(edges < size - 1){
         edges = size - 1;
         std::cout << std::endl
@@ -37,27 +41,86 @@ void FileOperator::randomizeUndirected(int size, double density) {
         std::uniform_int_distribution<> weightDist(1, 9);
         std::uniform_int_distribution<> vertexDist(0, size - 1);
 
-        std::vector<Edge> graph;
-        std::vector<std::vector<bool>> adjacencyMatrix(size, std::vector<bool>(size, false));
+        //jezeli graf jest pelny do generujemy kolejno krawedzie
+        //z losowymi wagami aby usprawnic szybkosc generowania
+        if (edges == size * (size - 1))
+            for (int u = 0; u < size; u++)
+                for (int v = u + 1; v < size; v++)
+                    file << u << " " << v << " " << weightDist(gen) << std::endl;
 
-        // Generowanie krawedzi
-        int generatedEdges = 0;
-        while (generatedEdges < edges) {
-            int source = vertexDist(gen);
-            int target = vertexDist(gen);
-            if (source != target && !adjacencyMatrix[source][target]) {
-                graph.push_back({source, target, weightDist(gen)});
-                adjacencyMatrix[source][target] = adjacencyMatrix[target][source] = true;
-                generatedEdges++;
+        else {
+            //do przechowywania powstalego grafu
+            std::vector<Edge> graph;
+            //do stwierdzenia jakie krawedzie juz istnieja
+            std::vector<std::vector<bool>> adjacencyMatrix(size, std::vector<bool>(size, false));
+            std::vector<bool> visited(size, false);
+            int vertex1 = 0, vertex2;
+            //bool visited[size];
+
+            do {
+                vertex2 = vertexDist(gen);
+            } while (vertex2 == 0);
+
+            graph.push_back({vertex1, vertex2, weightDist(gen)});
+            visited[vertex1] = true;
+            visited[vertex2] = true;
+
+
+            //generujemy drzewo spinajace
+            for (int i = 1; i < size - 1; i++) {
+                do {
+                    vertex1 = vertexDist(gen);
+                    vertex2 = vertexDist(gen);
+                } while (vertex1 == vertex2 || (visited[vertex1] == visited[vertex2]));
+                visited[vertex1] = true;
+                visited[vertex2] = true;
+                graph.push_back({vertex1, vertex2, weightDist(gen)});
+            }
+
+            //jezeli gestosc jest wieksza od 0.5 to latwiej
+            // bedzie wygenerowac gdzie krawedzi nie bedzie
+            if (density > 0.5 && graph.size() < size - 1) {
+                int shadowEdges = 0;
+                while (shadowEdges < size * (size - 1)/2 - edges) {
+                    int source = vertexDist(gen);
+                    int target = vertexDist(gen);
+                    if (source != target && !adjacencyMatrix[source][target]) {
+                        adjacencyMatrix[source][target] = adjacencyMatrix[target][source] = false;
+                        shadowEdges++;
+                    }
+                }
+
+                int generatedEdges = size - 1;
+                for(int u = 0; u < size; u++){
+                    for(int v = u + 1; v < size; v++){
+                        if(!adjacencyMatrix[u][v] && !adjacencyMatrix[v][u]){
+                            graph.push_back({u, v, weightDist(gen)});
+                            generatedEdges++;
+                        }
+                    }
+                }
+            }
+            //jezeli gestosc jest mniejsza niz 0.5 to
+            // latwiej bedzie wygenerowac gdzie sa krawedzie
+            else if (graph.size() <= size - 1) {
+                int generatedEdges = size - 1;
+                while (generatedEdges < edges) {
+                    int source = vertexDist(gen);
+                    int target = vertexDist(gen);
+                    if (source != target && !adjacencyMatrix[source][target]) {
+                        graph.push_back({source, target, weightDist(gen)});
+                        adjacencyMatrix[source][target] = adjacencyMatrix[target][source] = true;
+                        generatedEdges++;
+                    }
+                }
+            }
+
+            //Zapisz graf do pliku
+            file << size << " " << edges << " " << 0 << " " << size - 1 << std::endl;
+            for (const auto &edge: graph) {
+                file << edge.source << " " << edge.target << " " << edge.weight << std::endl;
             }
         }
-
-        //Zapisz graf do pliku
-        file << size << " " << edges << " " << 0 << " " << size - 1 << std::endl;
-        for (const auto& edge : graph) {
-            file << edge.source << " " << edge.target << " " << edge.weight << std::endl;
-        }
-
         file.close();
     }
     else std::cout << "\nTHERE WAS A PROBLEM WITH OPENING FILE\n";
@@ -72,6 +135,10 @@ void FileOperator::randomizeDirected(int size, double density) {
     }
 
     int edges = floor(floor(size * (size - 1)) * density);
+
+    std::cout << "Directed graph" << std::endl
+    << "For size " << size << " and density " << density 
+    << " we get " << edges << " edges" << std::endl;
 
     if(edges < size - 1){
         edges = size - 1;
@@ -94,54 +161,81 @@ void FileOperator::randomizeDirected(int size, double density) {
         for (int u = 0; u < size; u++) {
             for (int v = 0; v < size; v++) {
                 if (u != v) {
-                    file << u << " " << v << " " << weightDist(gen);
+                    file << u << " " << v << " " << weightDist(gen) << std::endl;
                 }
             }
         }
     }
 
     else {
-
-        int connected[size];
-        bool visited[size];
+        //do przechowywania powstalego grafu
+        std::vector<Edge> graph;
+        //do stwierdzenia jakie krawedzie juz istnieja
+        std::vector<std::vector<bool>> adjacencyMatrix(size, std::vector<bool>(size, false));
+        std::vector<bool> visited(size, false);
         int vertex1 = 0, vertex2;
+        //bool visited[size];
 
         do {
             vertex2 = vertexDist(gen);
         } while (vertex2 == 0);
 
-        file << vertex1 << " " << vertex2 << " " << weightDist(gen);
+        graph.push_back({vertex1, vertex2, weightDist(gen)});
         visited[vertex1] = true;
         visited[vertex2] = true;
-        connected[vertex1] = vertex2;
-
+        
         //generujemy drzewo spinajace
         for (int i = 1; i < size - 1; i++) {
             do {
                 vertex1 = vertexDist(gen);
                 vertex2 = vertexDist(gen);
             } while (vertex1 == vertex2 || (visited[vertex1] == visited[vertex2]));
-            connected[vertex1] = vertex2;
             visited[vertex1] = true;
             visited[vertex2] = true;
-            file << "\n" << vertex1 << " " << vertex2 << " " << weightDist(gen);
+            graph.push_back({vertex1, vertex2, weightDist(gen)});
         }
-        
-        //jesli brakuje krawedzi do generujemy dodatkowe
-        if(edges > size - 1) {
-            int count = size - 1;
-            for (int u = 0; u < size - 1 && count < edges; u++) {
-                for (int v = u + 1; v < size && count < edges; v++) {
-                    double random = probDist(gen);
-                    if (random <= density) {
-                        if (connected[u] != v) {
-                            int weight = weightDist(gen);
-                            count++;
-                            file << u << " " << v << " " << weight << std::endl;
-                        } else v--;
+
+        //jezeli gestosc jest wieksza od 0.5 to latwiej
+        // bedzie wygenerowac gdzie krawedzi nie bedzie
+        if (density > 0.5 && graph.size() < size - 1) {
+            int shadowEdges = 0;
+            while (shadowEdges < size * (size - 1) - edges) {
+                int source = vertexDist(gen);
+                int target = vertexDist(gen);
+                if (source != target && !adjacencyMatrix[source][target]) {
+                    adjacencyMatrix[source][target] = false;
+                    shadowEdges++;
+                }
+            }
+
+            int generatedEdges = size - 1;
+            for(int u = 0; u < size; u++){
+                for(int v = u + 1; v < size; v++){
+                    if(!adjacencyMatrix[u][v]){
+                        graph.push_back({u, v, weightDist(gen)});
+                        generatedEdges++;
                     }
                 }
             }
+        }
+            //jezeli gestosc jest mniejsza niz 0.5 to
+            // latwiej bedzie wygenerowac gdzie sa krawedzie
+        else if (graph.size() <= size - 1) {
+            int generatedEdges = size - 1;
+            while (generatedEdges < edges) {
+                int source = vertexDist(gen);
+                int target = vertexDist(gen);
+                if (source != target && !adjacencyMatrix[source][target]) {
+                    graph.push_back({source, target, weightDist(gen)});
+                    adjacencyMatrix[source][target] = true;
+                    generatedEdges++;
+                }
+            }
+        }
+
+        //Zapisz graf do pliku
+        for (const auto &edge: graph) {
+            file << edge.source << " " << edge.target << " " << edge.weight << std::endl;
         }
     }
     file.close();

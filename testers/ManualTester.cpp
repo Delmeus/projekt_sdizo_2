@@ -10,6 +10,7 @@
 #include "../algorithms/Kruskal.h"
 #include "../algorithms/Prim.h"
 #include "../algorithms/Dijkstra.h"
+#include "cmath"
 
 using namespace std;
 
@@ -38,6 +39,7 @@ void ManualTester::menu() {
                 cin >> density;
                 if (size < 1) cout << "\nSize has to be greater than 0 and density has to be between 0 to 1";
             } while (size < 1 || density < 0 || density > 1);
+            checkDensity(density, size);
             FileOperator::randomizeUndirected(size, density);
             FileOperator::randomizeDirected(size, density);
             graphListUndirected.readGraph("graphU.txt");
@@ -259,6 +261,18 @@ void ManualTester::waitForResponse() {
     std::cout << "\n\npress ENTER to continue..." << std::endl;
     std::cin.ignore(10000, '\n');
     getchar();
+}
+
+void ManualTester::checkDensity(double &density, int size) {
+    cout << endl;
+    if(density > 1){
+        density = 1;
+        cout << "Density was too big, changed it to 1" << endl;
+    }
+    else if(floor(floor(size * (size - 1)) / 2 * density) < size - 1){
+        density = 2/double(size);
+        cout << "Density was too small to fit a connected graph, changed it to " << density << endl;
+    }
 }
 
 void ManualTester::testKruskalMatrix() {
