@@ -9,7 +9,6 @@
 
 using namespace std;
 
-//niepoprawne
 void Dijkstra::forList(GraphAsList &g, int beginning) {
     //dystans do kazdego wierzcholka
     vector<int> distance(g.vertices, INT_MAX);
@@ -18,11 +17,11 @@ void Dijkstra::forList(GraphAsList &g, int beginning) {
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
 
     distance[beginning] = 0;
-    pq.emplace(0, beginning);
+    pq.emplace(beginning, 0);
 
     while (!pq.empty()) {
         //wybieramy wierzcholek o najmniejszej odleglosci
-        int u = pq.top().second;
+        int u = pq.top().first;
         pq.pop();
 
         //jezeli wierzcholek odwiedzony to pomijamy
@@ -33,20 +32,19 @@ void Dijkstra::forList(GraphAsList &g, int beginning) {
         visited[u] = true;
 
         //przegldamy sasiadow u
-        for (const auto& edge : g.edges) {
-            if (edge.second.first == u) {
-                int v = edge.second.second;
-                int weight = edge.first;
+        for (const auto& edge : g.adjList[u]) {
+            int v = edge.first;
+            int weight = edge.second;
 
-                if (v == u)
-                    continue;
+            if (v == u)
+                   continue;
 
-                if (distance[u] != INT_MAX && distance[v] > distance[u] + weight) {
-                    // Jeżeli znaleziono krotsza sciezke aktualizujemy wartosc
-                    distance[v] = distance[u] + weight;
-                    pq.emplace(distance[v], v);
-                }
+            if (distance[u] != INT_MAX && distance[v] > distance[u] + weight) {
+                // Jeżeli znaleziono krotsza sciezke aktualizujemy wartosc
+                distance[v] = distance[u] + weight;
+                pq.emplace(v, distance[v] );
             }
+
         }
     }
 

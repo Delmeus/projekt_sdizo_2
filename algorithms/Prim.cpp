@@ -51,7 +51,7 @@ bool Prim::isValidEdge(int u, int v, vector<bool> inMST)
 }
 
 int Prim::forList(GraphAsList &g) {
-
+/*
     //wektor w ktorym zapisujemy czy odwiedzilismy dany wierzcholek
     vector<bool> visited(g.vertices, false);
 
@@ -119,6 +119,50 @@ int Prim::forList(GraphAsList &g) {
     for (int i = 1; i < g.vertices; ++i) {
         cout << "Edge\t" << i-1 << ":\t" << i << " - " << parent[i] << "\t| cost = " << minCost[i] << endl;
         cost += minCost[i];
+    }
+*/
+    //wektor do przechowywania najmniejszej wagi dla danego polaczenia
+    std::vector<int> key(g.vertices, INT_MAX);
+
+    //wektor do przechowywania rodzica kazdego wierzcholka
+    std::vector<int> parent(g.vertices, -1);
+
+    //wektor w ktorym zapisujemy czy dany wierzcholek nalezy do mst
+    std::vector<bool> included(g.vertices, false);
+
+    //kolejka do przechowywania mozliwych polaczen
+    priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<>> pq;
+    //std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> pq;
+
+    int root = 0;
+    key[root] = 0;
+    pq.emplace(0,make_pair(0,0));
+
+    while (!pq.empty()) {
+        int u = pq.top().second.second;
+        pq.pop();
+
+        included[u] = true;
+
+        //sprawdzamy wszystkich sasiadow u
+        for (const auto& edge : g.adjList[u]) {
+            int v = edge.first;
+            int weight = edge.second;
+
+            //jezeli v jeszcze nie ma w MST i jego waga jest mniejsza niz aktualna, to dodajemy ja do kolejki
+            if (!included[v] && weight < key[v]) {
+                parent[v] = u;
+                key[v] = weight;
+                pq.emplace(key[v],make_pair(u,v));
+                //pq.emplace(v, key[v]);
+            }
+        }
+    }
+    int cost = 0;
+
+    for (int i = 1; i < g.vertices; ++i) {
+        cout << "Edge\t" << i-1 << ":\t" << i << " - " << parent[i] << "\t| cost = " << key[i] << endl;
+        cost += key[i];
     }
 
     return  cost;

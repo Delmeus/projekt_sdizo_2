@@ -7,19 +7,24 @@
 #include "algorithm"
 #include "vector"
 #include <string>
+#include "list"
 
+using namespace std;
 
 class GraphAsList {
 public:
     int vertices; // liczba wierzchołków
     std::vector<std::pair<int, std::pair<int,int>>> edges;
 
+    vector<list<pair<int, int>>> adjList;
 
-    void readGraph(std::string s);
+
+    void readGraphUndirected(std::string s);
+    void readGraphDirected(std::string s);
     void addEdge(int u, int v, int w);
     void display();
 
-    GraphAsList(int v);
+    GraphAsList(int numVertices) : vertices(numVertices), adjList(numVertices) {}
 };
 
 

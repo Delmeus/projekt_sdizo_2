@@ -21,7 +21,7 @@ private:
     void testBellmanFordList(GraphAsList g);
     void testBellmanFordMatrix();
     static void waitForResponse();
-    void checkDensity(double &density, int size);
+    static void checkDensity(double &density, int size);
 public:
     ManualTester();
     void menu();
