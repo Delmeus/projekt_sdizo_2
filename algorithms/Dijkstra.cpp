@@ -9,19 +9,19 @@
 
 using namespace std;
 
-void Dijkstra::forList(GraphAsList &g, int beginning) {
+void Dijkstra::forList(GraphAsList &g, int source) {
     //dystans do kazdego wierzcholka
     vector<int> distance(g.vertices, INT_MAX);
     //czy odwiedzono dany wierzcholek
     vector<bool> visited(g.vertices, false);
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
 
-    distance[beginning] = 0;
-    pq.emplace(beginning, 0);
+    distance[source] = 0;
+    pq.emplace(0, source);
 
     while (!pq.empty()) {
         //wybieramy wierzcholek o najmniejszej odleglosci
-        int u = pq.top().first;
+        int u = pq.top().second;
         pq.pop();
 
         //jezeli wierzcholek odwiedzony to pomijamy
@@ -42,13 +42,13 @@ void Dijkstra::forList(GraphAsList &g, int beginning) {
             if (distance[u] != INT_MAX && distance[v] > distance[u] + weight) {
                 // Jeżeli znaleziono krotsza sciezke aktualizujemy wartosc
                 distance[v] = distance[u] + weight;
-                pq.emplace(v, distance[v] );
+                pq.emplace(distance[v], v );
             }
 
         }
     }
 
-    std::cout << "Vertex \t Distance from " << beginning << std::endl;
+    std::cout << "Vertex \t Distance from " << source << std::endl;
     for(int i = 0; i < g.vertices; i++){
         if(distance[i] != INT_MAX)
             std::cout << "  " << i << " \t\t" << distance[i] << std::endl;
@@ -57,10 +57,10 @@ void Dijkstra::forList(GraphAsList &g, int beginning) {
     }
 }
 
-void Dijkstra::forMatrix(GraphAsMatrix &g, int beginning) {
+void Dijkstra::forMatrix(GraphAsMatrix &g, int source) {
     std::vector<int> distance(g.vertices, INT_MAX);
     std::vector<bool> visited(g.vertices, false);
-    distance[beginning] = 0;
+    distance[source] = 0;
 
     for (int count = 0; count < g.vertices - 1; count++) {
         int minDistance = INT_MAX;
@@ -84,7 +84,7 @@ void Dijkstra::forMatrix(GraphAsMatrix &g, int beginning) {
     }
 
 
-    std::cout << "Vertex \t Distance from " << beginning << std::endl;
+    std::cout << "Vertex \t Distance from " << source << std::endl;
     for(int i = 0; i < g.vertices; i++){
         if(distance[i] != INT_MAX)
             std::cout << "  " << i << " \t\t" << distance[i] << std::endl;

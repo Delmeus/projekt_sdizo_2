@@ -68,6 +68,7 @@ void GraphAsList::readGraphDirected(std::string s) {
             std::getline(file, line);
             std::stringstream info(line);
             info >> u >> v >> w;
+            printf("iteration: %d, u: %d, v: %d, w: %d\n",i, u, v, w);
             adjList[u].emplace_back(v,w);
         }
         file.close();

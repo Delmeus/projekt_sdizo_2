@@ -10,8 +10,9 @@
 #include "../graph/GraphAsMatrix.h"
 
 class BellmanFord {
-    void forList(GraphAsList g);
-    void forMatrix(GraphAsMatrix g);
+public:
+    static void forList(GraphAsList &g, int source);
+    void forMatrix(GraphAsMatrix &g);
 };
 
 

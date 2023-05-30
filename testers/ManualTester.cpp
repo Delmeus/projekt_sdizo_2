@@ -11,6 +11,7 @@
 #include "../algorithms/Prim.h"
 #include "../algorithms/Dijkstra.h"
 #include "cmath"
+#include "../algorithms/BellmanFord.h"
 
 using namespace std;
 
@@ -39,13 +40,14 @@ void ManualTester::menu() {
                 cin >> density;
                 if (size < 1) cout << "\nSize has to be greater than 0 and density has to be between 0 to 1";
             } while (size < 1 || density < 0 || density > 1);
+
             checkDensity(density, size);
             FileOperator::randomizeUndirected(size, density);
             FileOperator::randomizeDirected(size, density);
             graphListUndirected.readGraphUndirected("graphU.txt");
             graphMatrixUndirected.readGraphUndirected("graphU.txt");
 
-            graphListDirected.readGraphUndirected("graphD.txt");
+            graphListDirected.readGraphDirected("graphD.txt");
             graphMatrixDirected.readGraphDirected("graphD.txt");
         }
         else if(answer == 2){
@@ -169,7 +171,7 @@ void ManualTester::menu() {
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
-                else cout << "\nGraph does not exist, they might have been a problem with reading graphfrom file" << endl;
+                else cout << "\nGraph does not exist, they might have been a problem with reading graph from file" << endl;
                 waitForResponse();
                 system("CLS");
                 break;
@@ -177,7 +179,7 @@ void ManualTester::menu() {
             case 7:{
                 if(graphListUndirected.vertices > 0){
                     timer.start();
-                    //testBellmanFordList(graphListUndirected);
+                    BellmanFord::forList(graphListDirected, 0);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
