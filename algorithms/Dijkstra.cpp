@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void Dijkstra::forList(GraphAsList &g, int source) {
+void Dijkstra::forList(GraphAsList &g, int source, bool print) {
     //dystans do kazdego wierzcholka
     vector<int> distance(g.vertices, INT_MAX);
     //czy odwiedzono dany wierzcholek
@@ -48,16 +48,18 @@ void Dijkstra::forList(GraphAsList &g, int source) {
         }
     }
 
-    std::cout << "Vertex \t Distance from " << source << std::endl;
-    for(int i = 0; i < g.vertices; i++){
-        if(distance[i] != INT_MAX)
-            std::cout << "  " << i << " \t\t" << distance[i] << std::endl;
-        else
-            std::cout << "  " << i << " \t\t" << "-" << std::endl;
+    if(print) {
+        std::cout << "Vertex \t Distance from " << source << std::endl;
+        for (int i = 0; i < g.vertices; i++) {
+            if (distance[i] != INT_MAX)
+                std::cout << "  " << i << " \t\t" << distance[i] << std::endl;
+            else
+                std::cout << "  " << i << " \t\t" << "-" << std::endl;
+        }
     }
 }
 
-void Dijkstra::forMatrix(GraphAsMatrix &g, int source) {
+void Dijkstra::forMatrix(GraphAsMatrix &g, int source, bool print) {
     std::vector<int> distance(g.vertices, INT_MAX);
     std::vector<bool> visited(g.vertices, false);
     distance[source] = 0;
@@ -83,13 +85,14 @@ void Dijkstra::forMatrix(GraphAsMatrix &g, int source) {
         }
     }
 
-
-    std::cout << "Vertex \t Distance from " << source << std::endl;
-    for(int i = 0; i < g.vertices; i++){
-        if(distance[i] != INT_MAX)
-            std::cout << "  " << i << " \t\t" << distance[i] << std::endl;
-        else
-            std::cout << "  " << i << " \t\t" << "-" << std::endl;
+    if(print) {
+        std::cout << "Vertex \t Distance from " << source << std::endl;
+        for (int i = 0; i < g.vertices; i++) {
+            if (distance[i] != INT_MAX)
+                std::cout << "  " << i << " \t\t" << distance[i] << std::endl;
+            else
+                std::cout << "  " << i << " \t\t" << "-" << std::endl;
+        }
     }
 
 }

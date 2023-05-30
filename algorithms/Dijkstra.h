@@ -13,8 +13,8 @@ class Dijkstra {
 private:
     int minDistance(int distance[], bool pathSet[], GraphAsMatrix &g);
 public:
-    static void forList(GraphAsList &g, int source);
-    static void forMatrix(GraphAsMatrix &g, int source);
+    static void forList(GraphAsList &g, int source, bool print);
+    static void forMatrix(GraphAsMatrix &g, int source, bool print);
 };
 
 

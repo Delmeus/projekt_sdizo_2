@@ -140,7 +140,7 @@ void ManualTester::menu() {
                 if(graphListUndirected.vertices > 0){
                     int cost;
                     timer.start();
-                    cost = Kruskal::forList(graphListUndirected);
+                    cost = Kruskal::forList(graphListUndirected, true);
                     timer.stop();
                     cout << "Cost: " << cost << endl;
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
@@ -154,7 +154,7 @@ void ManualTester::menu() {
                 if(graphListUndirected.vertices > 0){
                     int cost;
                     timer.start();
-                    cost = Prim::forList(graphListUndirected);
+                    cost = Prim::forList(graphListUndirected, true);
                     timer.stop();
                     cout << "Cost: " << cost << endl;
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
@@ -167,7 +167,7 @@ void ManualTester::menu() {
             case 6:{
                 if(graphListUndirected.vertices > 0){
                     timer.start();
-                    Dijkstra::forList(graphListDirected, 0);
+                    Dijkstra::forList(graphListDirected, 0, true);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
@@ -179,7 +179,7 @@ void ManualTester::menu() {
             case 7:{
                 if(graphListUndirected.vertices > 0){
                     timer.start();
-                    BellmanFord::forList(graphListDirected, 0);
+                    BellmanFord::forList(graphListDirected, 0, true);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
@@ -192,7 +192,7 @@ void ManualTester::menu() {
                 if(graphMatrixUndirected.vertices > 0) {
                     int cost;
                     timer.start();
-                    cost = Kruskal::forMatrix(graphMatrixUndirected);
+                    cost = Kruskal::forMatrix(graphMatrixUndirected, true);
                     timer.stop();
                     cout << "Cost: " << cost << endl;
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
@@ -206,7 +206,7 @@ void ManualTester::menu() {
                 if(graphMatrixUndirected.vertices > 0) {
                     int cost;
                     timer.start();
-                    cost = Prim::forMatrix(graphMatrixUndirected);
+                    cost = Prim::forMatrix(graphMatrixUndirected, true);
                     timer.stop();
                     cout << "Cost: " << cost << endl;
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
@@ -219,7 +219,7 @@ void ManualTester::menu() {
             case 10:{
                 if(graphMatrixUndirected.vertices > 0) {
                     timer.start();
-                    Dijkstra::forMatrix(graphMatrixDirected, 0);
+                    Dijkstra::forMatrix(graphMatrixDirected, 0, true);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }
@@ -231,7 +231,7 @@ void ManualTester::menu() {
             case 11:{
                 if(graphMatrixUndirected.vertices > 0) {
                     timer.start();
-                    //testBellmanFordMatrix();
+                    BellmanFord::forMatrix(graphMatrixDirected, 0, true);
                     timer.stop();
                     cout << "\nAlgorithm finished in: |" << timer.mili() << " ms| |" << timer.micro() << " mis|" << endl;
                 }

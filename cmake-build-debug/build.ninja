@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: projekt_SDiZO_2
-# Configurations: Debug
+# Configurations: Release
 # =============================================================================
 
 #############################################
@@ -24,7 +24,7 @@ ninja_required_version = 1.5
 #############################################
 # Set configuration variable for custom commands.
 
-CONFIGURATION = Debug
+CONFIGURATION = Release
 # =============================================================================
 # Include auxiliary files.
 
@@ -49,75 +49,75 @@ cmake_ninja_workdir = G$:/projekt_SDiZO_2/cmake-build-debug/
 
 build cmake_object_order_depends_target_projekt_SDiZO_2: phony || CMakeFiles/projekt_SDiZO_2.dir
 
-build CMakeFiles/projekt_SDiZO_2.dir/main.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/main.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/main.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/main.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\main.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir
 
-build CMakeFiles/projekt_SDiZO_2.dir/graph/GraphAsList.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/graph/GraphAsList.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/graph/GraphAsList.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/graph/GraphAsList.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\graph\GraphAsList.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\graph
 
-build CMakeFiles/projekt_SDiZO_2.dir/graph/GraphAsMatrix.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/graph/GraphAsMatrix.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/graph/GraphAsMatrix.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/graph/GraphAsMatrix.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\graph\GraphAsMatrix.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\graph
 
-build CMakeFiles/projekt_SDiZO_2.dir/utilities/FileOperator.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/utilities/FileOperator.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/utilities/FileOperator.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/utilities/FileOperator.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\utilities\FileOperator.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\utilities
 
-build CMakeFiles/projekt_SDiZO_2.dir/algorithms/Kruskal.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/algorithms/Kruskal.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/algorithms/Kruskal.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/algorithms/Kruskal.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\algorithms\Kruskal.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\algorithms
 
-build CMakeFiles/projekt_SDiZO_2.dir/algorithms/Prim.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/algorithms/Prim.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/algorithms/Prim.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/algorithms/Prim.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\algorithms\Prim.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\algorithms
 
-build CMakeFiles/projekt_SDiZO_2.dir/algorithms/Dijkstra.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/algorithms/Dijkstra.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/algorithms/Dijkstra.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/algorithms/Dijkstra.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\algorithms\Dijkstra.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\algorithms
 
-build CMakeFiles/projekt_SDiZO_2.dir/algorithms/BellmanFord.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/algorithms/BellmanFord.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/algorithms/BellmanFord.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/algorithms/BellmanFord.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\algorithms\BellmanFord.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\algorithms
 
-build CMakeFiles/projekt_SDiZO_2.dir/utilities/DisjointSets.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/utilities/DisjointSets.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/utilities/DisjointSets.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/utilities/DisjointSets.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\utilities\DisjointSets.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\utilities
 
-build CMakeFiles/projekt_SDiZO_2.dir/utilities/Timer.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/utilities/Timer.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/utilities/Timer.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/utilities/Timer.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\utilities\Timer.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\utilities
 
-build CMakeFiles/projekt_SDiZO_2.dir/testers/ManualTester.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/testers/ManualTester.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/testers/ManualTester.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/testers/ManualTester.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\testers\ManualTester.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\testers
 
-build CMakeFiles/projekt_SDiZO_2.dir/testers/AutomaticTester.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Debug G$:/projekt_SDiZO_2/testers/AutomaticTester.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
+build CMakeFiles/projekt_SDiZO_2.dir/testers/AutomaticTester.cpp.obj: CXX_COMPILER__projekt_SDiZO_2_Release G$:/projekt_SDiZO_2/testers/AutomaticTester.cpp || cmake_object_order_depends_target_projekt_SDiZO_2
   DEP_FILE = CMakeFiles\projekt_SDiZO_2.dir\testers\AutomaticTester.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   OBJECT_FILE_DIR = CMakeFiles\projekt_SDiZO_2.dir\testers
 
@@ -129,8 +129,8 @@ build CMakeFiles/projekt_SDiZO_2.dir/testers/AutomaticTester.cpp.obj: CXX_COMPIL
 #############################################
 # Link the executable projekt_SDiZO_2.exe
 
-build projekt_SDiZO_2.exe: CXX_EXECUTABLE_LINKER__projekt_SDiZO_2_Debug CMakeFiles/projekt_SDiZO_2.dir/main.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/graph/GraphAsList.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/graph/GraphAsMatrix.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/utilities/FileOperator.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/algorithms/Kruskal.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/algorithms/Prim.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/algorithms/Dijkstra.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/algorithms/BellmanFord.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/utilities/DisjointSets.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/utilities/Timer.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/testers/ManualTester.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/testers/AutomaticTester.cpp.obj
-  FLAGS = -g
+build projekt_SDiZO_2.exe: CXX_EXECUTABLE_LINKER__projekt_SDiZO_2_Release CMakeFiles/projekt_SDiZO_2.dir/main.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/graph/GraphAsList.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/graph/GraphAsMatrix.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/utilities/FileOperator.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/algorithms/Kruskal.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/algorithms/Prim.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/algorithms/Dijkstra.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/algorithms/BellmanFord.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/utilities/DisjointSets.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/utilities/Timer.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/testers/ManualTester.cpp.obj CMakeFiles/projekt_SDiZO_2.dir/testers/AutomaticTester.cpp.obj
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\projekt_SDiZO_2.dir
   POST_BUILD = cd .

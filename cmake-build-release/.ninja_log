@@ -1,0 +1,15 @@
+# ninja log v5
+1	590	7071487812180181	CMakeFiles/projekt_SDiZO_2.dir/main.cpp.obj	9ce7243a429b66c0
+8	730	7071487813586462	CMakeFiles/projekt_SDiZO_2.dir/algorithms/Kruskal.cpp.obj	f824224e555f4bc8
+891	2402	7071487830310298	CMakeFiles/projekt_SDiZO_2.dir/utilities/FileOperator.cpp.obj	a44bd43f2f5eb52a
+6	890	7071487815187282	CMakeFiles/projekt_SDiZO_2.dir/graph/GraphAsList.cpp.obj	5f10a1bbf676ef3
+592	1386	7071487820150817	CMakeFiles/projekt_SDiZO_2.dir/graph/GraphAsMatrix.cpp.obj	3094dfc7e17fbc5a
+1387	1466	7071487820943793	CMakeFiles/projekt_SDiZO_2.dir/utilities/DisjointSets.cpp.obj	f38ac60f10080cb4
+730	1958	7071487825859711	CMakeFiles/projekt_SDiZO_2.dir/algorithms/Prim.cpp.obj	43aec2ad437ad1e4
+1466	2448	7071487830769055	CMakeFiles/projekt_SDiZO_2.dir/algorithms/Dijkstra.cpp.obj	a6da57f5226b5cf5
+2449	2611	7071487832320053	CMakeFiles/projekt_SDiZO_2.dir/utilities/Timer.cpp.obj	abbda84cb667d490
+1958	2661	7071487832878557	CMakeFiles/projekt_SDiZO_2.dir/algorithms/BellmanFord.cpp.obj	76629777452c8c6e
+2612	3350	7071487839778358	CMakeFiles/projekt_SDiZO_2.dir/testers/AutomaticTester.cpp.obj	3792259854fcf83c
+2402	3371	7071487840001881	CMakeFiles/projekt_SDiZO_2.dir/testers/ManualTester.cpp.obj	23c84c51b36838fe
+3371	3500	7071487841239756	projekt_SDiZO_2.exe	657e47fd9022bb32
+4	572	7071488101803671	projekt_SDiZO_2.exe	781796611c8acd68

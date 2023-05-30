@@ -11,8 +11,8 @@
 
 class BellmanFord {
 public:
-    static void forList(GraphAsList &g, int source);
-    void forMatrix(GraphAsMatrix &g);
+    static void forList(GraphAsList &g, int source, bool print);
+    static void forMatrix(GraphAsMatrix &g, int source, bool print);
 };
 
 

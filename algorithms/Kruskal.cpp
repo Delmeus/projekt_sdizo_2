@@ -9,7 +9,7 @@
 
 using namespace std;
 
-int Kruskal::forList(GraphAsList &g) {
+int Kruskal::forList(GraphAsList &g, bool print) {
     std::vector<std::pair<int, std::pair<int,int>>> edges;
 
     for (int i = 0; i < g.vertices; ++i) {
@@ -35,7 +35,11 @@ int Kruskal::forList(GraphAsList &g) {
         int setV = ds.find(v);
 
         if(setU != setV){
-            std::cout << "Edge\t" << edge_count++ << ":\t" << u << " - " << v << "\t| cost = " << it->first << std::endl;
+            if(print)
+                std::cout << "Edge\t" << edge_count++ << ":\t" << u << " - " << v << "\t| cost = " << it->first << std::endl;
+            else
+                edge_count++;
+
             mst += it->first;
 
             ds.merge(setU, setV);
@@ -46,7 +50,7 @@ int Kruskal::forList(GraphAsList &g) {
 
 }
 
-int Kruskal::forMatrix(GraphAsMatrix &g) {
+int Kruskal::forMatrix(GraphAsMatrix &g, bool print) {
     int mst = 0;
 
 
@@ -66,7 +70,10 @@ int Kruskal::forMatrix(GraphAsMatrix &g) {
         }
 
         ds->merge(u, v);
-        std::cout << "Edge\t" << edge_count++ << ":\t" << u << " - " << v << "\t| cost = " << min << std::endl;
+        if(print)
+            std::cout << "Edge\t" << edge_count++ << ":\t" << u << " - " << v << "\t| cost = " << min << std::endl;
+        else
+            edge_count++;
         mst += min;
     }
 

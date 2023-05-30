@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int Prim::forMatrix(GraphAsMatrix &g) {
+int Prim::forMatrix(GraphAsMatrix &g, bool print) {
     //do przechowywania czy dane wierzcholki
     //znajduja sie juz w MST
     vector<bool> inMST(g.vertices, false);
@@ -34,7 +34,10 @@ int Prim::forMatrix(GraphAsMatrix &g) {
             }
         }
         if (a != -1 && b != -1) {
-            std::cout << "Edge\t" << edge_count++ << ":\t" << a << " - " << b << "\t| cost = " << min << endl;
+            if(print)
+                std::cout << "Edge\t" << edge_count++ << ":\t" << a << " - " << b << "\t| cost = " << min << endl;
+            else
+                edge_count++;
             mincost = mincost + min;
             inMST[b] = inMST[a] = true;
         }
@@ -50,7 +53,7 @@ bool Prim::isValidEdge(int u, int v, vector<bool> inMST)
     return true;
 }
 
-int Prim::forList(GraphAsList &g) {
+int Prim::forList(GraphAsList &g, bool print) {
 /*
     //wektor w ktorym zapisujemy czy odwiedzilismy dany wierzcholek
     vector<bool> visited(g.vertices, false);
@@ -161,7 +164,9 @@ int Prim::forList(GraphAsList &g) {
     int cost = 0;
 
     for (int i = 1; i < g.vertices; ++i) {
-        cout << "Edge\t" << i-1 << ":\t" << i << " - " << parent[i] << "\t| cost = " << key[i] << endl;
+        if(print)
+            cout << "Edge\t" << i-1 << ":\t" << i << " - " << parent[i] << "\t| cost = " << key[i] << endl;
+
         cost += key[i];
     }
 

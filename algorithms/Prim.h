@@ -13,8 +13,8 @@ class Prim {
 private:
     static bool isValidEdge(int u, int v, std::vector<bool> inMST);
 public:
-    static int forList(GraphAsList &g);
-    static int forMatrix(GraphAsMatrix &g);
+    static int forList(GraphAsList &g, bool print);
+    static int forMatrix(GraphAsMatrix &g, bool print);
 };
 
 
